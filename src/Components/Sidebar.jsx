@@ -7,10 +7,10 @@ function Sidebar() {
         <>
             <sidebar className="sidebar sidebar-offcanvas" id="sidebar">
                 <div className="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-                    <NavLink className="sidebar-brand brand-logo" to="/">
+                    <NavLink className="sidebar-brand brand-logo" to="/dashboard">
                         <img src="assets/images/logo.svg" alt="logo" />
                     </NavLink>
-                    <NavLink className="sidebar-brand brand-logo-mini" to="/">
+                    <NavLink className="sidebar-brand brand-logo-mini" to="/dashboard">
                         <img src="assets/images/logo-mini.svg" alt="logo" />
                     </NavLink>
                 </div>
@@ -32,28 +32,23 @@ function Sidebar() {
                         <span className="nav-link">Navigation</span>
                     </li>
                     <li className="nav-item menu-items">
-                        <a className="nav-link" href="index.html">
+                        <NavLink className="nav-link" to="/dashboard">
                             <span className="menu-icon">
                                 <i className="mdi mdi-speedometer" />
                             </span>
                             <span className="menu-title">Dashboard</span>
-                        </a>
+                        </NavLink>
+                    </li>
+                    <li className="nav-item nav-category">
+                        <span className="nav-link">Home Menu</span>
                     </li>
                     <li className="nav-item menu-items">
-                        <a className="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                        <NavLink className="nav-link" to="/itemsmenu">
                             <span className="menu-icon">
-                                <i className="mdi mdi-laptop" />
+                                <i className="mdi mdi-dropbox" />
                             </span>
-                            <span className="menu-title">Basic UI Elements</span>
-                            <i className="menu-arrow" />
-                        </a>
-                        <div className="collapse" id="ui-basic">
-                            <ul className="nav flex-column sub-menu">
-                                <li className="nav-item"> <a className="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                                <li className="nav-item"> <a className="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                                <li className="nav-item"> <a className="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-                            </ul>
-                        </div>
+                            <span className="menu-title">Items Menu</span>
+                        </NavLink>
                     </li>
                     <li className="nav-item menu-items">
                         <a className="nav-link" href="pages/forms/basic_elements.html">

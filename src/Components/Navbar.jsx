@@ -1,5 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import {
+    NavLink
+} from 'react-router-dom';
 
 function Navbar() {
     return (
@@ -31,7 +34,7 @@ function Navbar() {
                             <div className="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
                                 <h6 className="p-3 mb-0">Profile</h6>
                                 <div className="dropdown-divider" />
-                                <a className="dropdown-item preview-item">
+                                <NavLink to="/" className="dropdown-item preview-item">
                                     <div className="preview-thumbnail">
                                         <div className="preview-icon bg-dark rounded-circle">
                                             <i className="mdi mdi-logout text-danger" />
@@ -40,7 +43,7 @@ function Navbar() {
                                     <div className="preview-item-content">
                                         <p className="preview-subject mb-1">Log out</p>
                                     </div>
-                                </a>
+                                </NavLink>
                             </div>
                         </li>
                     </ul>

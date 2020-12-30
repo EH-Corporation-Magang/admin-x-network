@@ -8,12 +8,18 @@ import {
 import Sidebar from './Components/Sidebar';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
+import Dashboard from './Screens/Dashboard';
+import Login from './Components/Login';
 
 function App() {
   return (
     <>
       <Router>
         <Switch>
+          <Route exact path="/">
+            <Login />
+          </Route>
+
           <div className="container-scroller">
 
             {/* sidebar */}
@@ -27,7 +33,9 @@ function App() {
               <div className="main-panel">
                 <div className="content-wrapper">
 
-
+                  <Route path="/dashboard">
+                    <Dashboard />
+                  </Route>
 
                 </div>
 

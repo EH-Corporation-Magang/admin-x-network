@@ -17,7 +17,7 @@ function Login() {
                 <div className="row">
                     <div className="col-sm-6 login-section-wrapper">
                         <div className="brand-wrapper">
-                            <img src="assets/images/logo.svg" alt="logo" className="logo" />
+                            <img src="assets/images/logox.svg" style={{ height: "40px" }} alt="logo" className="logo" />
                         </div>
                         <div className="login-wrapper my-auto">
                             <h1 className="login-title">Log in</h1>

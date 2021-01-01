@@ -8,7 +8,7 @@ function Sidebar() {
             <sidebar className="sidebar sidebar-offcanvas" id="sidebar">
                 <div className="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
                     <NavLink className="sidebar-brand brand-logo" to="/dashboard">
-                        <img src="assets/images/logo.svg" alt="logo" />
+                        <img src="assets/images/logox.svg" style={{ height: "60px" }} alt="logo" />
                     </NavLink>
                     <NavLink className="sidebar-brand brand-logo-mini" to="/dashboard">
                         <img src="assets/images/logo-mini.svg" alt="logo" />
@@ -48,6 +48,17 @@ function Sidebar() {
                                 <i className="mdi mdi-dropbox" />
                             </span>
                             <span className="menu-title">Items Menu</span>
+                        </NavLink>
+                    </li>
+                    <li className="nav-item nav-category">
+                        <span className="nav-link">Other Menu</span>
+                    </li>
+                    <li className="nav-item menu-items">
+                        <NavLink className="nav-link" to="/itemsmenu">
+                            <span className="menu-icon">
+                                <i className="mdi mdi-dropbox" />
+                            </span>
+                            <span className="menu-title">Radio Menu</span>
                         </NavLink>
                     </li>
                     <li className="nav-item menu-items">

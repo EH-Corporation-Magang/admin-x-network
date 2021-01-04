@@ -26,6 +26,7 @@ function Login(props) {
                 localStorage.setItem('username', datalogin.result.username)
                 localStorage.setItem('gambaruser', datalogin.result.gambaruser)
                 localStorage.setItem('token', datalogin.result.token)
+                localStorage.setItem('iduser', datalogin.result.iduser)
                 props.setData({
                     loggedIn: true,
                     user: datalogin.result.username

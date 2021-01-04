@@ -6,14 +6,14 @@ import React,
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  NavLink
+  Route
 } from 'react-router-dom';
+import '@sweetalert2/theme-dark';
 import Navbar from './Components/Navbar';
 import Dashboard from './Screens/Dashboard';
 import Login from './Components/Login';
 import Register from './Components/Register';
-import '@sweetalert2/theme-dark';
+import CareerMenu from './Screens/CareerMenu';
 
 function App() {
   const [state, setState] = useState({
@@ -42,12 +42,12 @@ function App() {
             {/* sidebar */}
             <nav className="sidebar sidebar-offcanvas" id="sidebar">
               <div className="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-                <NavLink className="sidebar-brand brand-logo" to="/dashboard">
+                <a className="sidebar-brand brand-logo" href="dashboard">
                   <img src="assets/images/logox.svg" style={{ height: "60px" }} alt="logo" />
-                </NavLink>
-                <NavLink className="sidebar-brand brand-logo-mini" to="/dashboard">
+                </a>
+                <a className="sidebar-brand brand-logo-mini" href="dashboard">
                   <img src="assets/images/logo-mini.svg" alt="logo" />
-                </NavLink>
+                </a>
               </div>
               <ul className="nav">
                 <li className="nav-item profile">
@@ -67,69 +67,69 @@ function App() {
                   <span className="nav-link">Navigation</span>
                 </li>
                 <li className="nav-item menu-items">
-                  <NavLink className="nav-link" to="/dashboard">
+                  <a className="nav-link" href="/dashboard">
                     <span className="menu-icon">
                       <i className="mdi mdi-speedometer" />
                     </span>
                     <span className="menu-title">Dashboard</span>
-                  </NavLink>
+                  </a>
                 </li>
                 <li className="nav-item nav-category">
                   <span className="nav-link">Other Menu</span>
                 </li>
                 <li className="nav-item menu-items">
-                  <NavLink className="nav-link" to="/radiomenu">
+                  <a className="nav-link" href="/radiomenu">
                     <span className="menu-icon">
                       <i className="mdi mdi-radio" />
                     </span>
                     <span className="menu-title">Radio Menu</span>
-                  </NavLink>
+                  </a>
                 </li>
                 <li className="nav-item menu-items">
-                  <NavLink className="nav-link" to="/messagemenu">
+                  <a className="nav-link" href="/messagemenu">
                     <span className="menu-icon">
                       <i className="mdi mdi-message-text" />
                     </span>
                     <span className="menu-title">Messaging Menu</span>
-                  </NavLink>
+                  </a>
                 </li>
                 <li className="nav-item menu-items">
-                  <NavLink className="nav-link" to="digitalmenu">
+                  <a className="nav-link" href="digitalmenu">
                     <span className="menu-icon">
                       <i className="mdi mdi-panorama" />
                     </span>
                     <span className="menu-title">Digital Ads Menu</span>
-                  </NavLink>
+                  </a>
                 </li>
                 <li className="nav-item menu-items">
-                  <NavLink className="nav-link" to="appsmenu">
+                  <a className="nav-link" href="appsmenu">
                     <span className="menu-icon">
                       <i className="mdi mdi-apps" />
                     </span>
                     <span className="menu-title">Apps Menu</span>
-                  </NavLink>
+                  </a>
                 </li>
                 <li className="nav-item nav-category">
                   <span className="nav-link">Job Vacancy</span>
                 </li>
                 <li className="nav-item menu-items">
-                  <NavLink className="nav-link" to="careermenu">
+                  <a className="nav-link" href="careermenu">
                     <span className="menu-icon">
                       <i className="mdi mdi-briefcase" />
                     </span>
                     <span className="menu-title">Career Menu</span>
-                  </NavLink>
+                  </a>
                 </li>
                 <li className="nav-item nav-category">
                   <span className="nav-link">Contact</span>
                 </li>
                 <li className="nav-item menu-items">
-                  <NavLink className="nav-link" to="careermenu">
+                  <a className="nav-link" href="contactmenu">
                     <span className="menu-icon">
                       <i className="mdi mdi-wechat" />
                     </span>
                     <span className="menu-title">Contact Menu</span>
-                  </NavLink>
+                  </a>
                 </li>
               </ul>
             </nav>
@@ -146,8 +146,14 @@ function App() {
               <div className="main-panel">
                 <div className="content-wrapper">
 
+                  {/* Dashboard */}
                   <Route path="/dashboard">
                     <Dashboard />
+                  </Route>
+
+                  {/* Career Menu */}
+                  <Route path="/careermenu">
+                    <CareerMenu />
                   </Route>
 
                 </div>

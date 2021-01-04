@@ -1,10 +1,37 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React from 'react';
-import {
-    NavLink
-} from 'react-router-dom';
+import React, {
+    useState,
+    useEffect
+} from 'react';
+import MySwal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
-function Login() {
+function Login(props) {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('')
+    const Swal = withReactContent(MySwal);
+
+    const login = async e => {
+        e.preventDefault()
+        let formData = new FormData(e.target)
+
+        try {
+            const fetchLogin = await fetch(`http://localhost:8000/login`, {
+                method: 'POST',
+                body: formData
+            })
+            const datalogin = await fetchLogin.json();
+            console.log(datalogin);
+        } catch (error) {
+            console.log(error)
+            alert(error)
+        }
+    }
+
+    useEffect(() => {
+
+    }, [])
+
     return (
         <>
             {/* css for login */}
@@ -21,7 +48,7 @@ function Login() {
                         </div>
                         <div className="login-wrapper my-auto">
                             <h1 className="login-title">Log in</h1>
-                            <form action="#!">
+                            <form onSubmit={login}>
                                 <div className="form-group">
                                     <label htmlFor="email">Email</label>
                                     <input
@@ -34,6 +61,9 @@ function Login() {
                                         id="email"
                                         className="form-control"
                                         placeholder="email@example.com"
+                                        value={email}
+                                        onChange={e => setEmail(e.target.value)}
+                                        required
                                     />
                                 </div>
                                 <div className="form-group mb-4">
@@ -47,11 +77,14 @@ function Login() {
                                         id="password"
                                         className="form-control"
                                         placeholder="enter your passsword"
+                                        value={password}
+                                        onChange={e => setPassword(e.target.value)}
+                                        required
                                     />
                                 </div>
-                                <NavLink to="/dashboard" name="login" id="login" className="btn btn-block login-btn" type="button">
+                                <button type="submit" className="btn btn-block login-btn">
                                     Login
-                                </NavLink>
+                                </button>
                             </form>
                             <p style={{ marginTop: "15%" }} className="login-wrapper-footer-text">Don't have an account? <a href="#!" className="text-reset">Register here</a></p>
                         </div>

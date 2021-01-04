@@ -54,70 +54,58 @@ function Sidebar() {
                         <span className="nav-link">Other Menu</span>
                     </li>
                     <li className="nav-item menu-items">
-                        <NavLink className="nav-link" to="/itemsmenu">
+                        <NavLink className="nav-link" to="/radiomenu">
                             <span className="menu-icon">
-                                <i className="mdi mdi-dropbox" />
+                                <i className="mdi mdi-radio" />
                             </span>
                             <span className="menu-title">Radio Menu</span>
                         </NavLink>
                     </li>
                     <li className="nav-item menu-items">
-                        <a className="nav-link" href="pages/forms/basic_elements.html">
+                        <NavLink className="nav-link" to="/messagemenu">
                             <span className="menu-icon">
-                                <i className="mdi mdi-playlist-play" />
+                                <i className="mdi mdi-message-text" />
                             </span>
-                            <span className="menu-title">Form Elements</span>
-                        </a>
+                            <span className="menu-title">Messaging Menu</span>
+                        </NavLink>
                     </li>
                     <li className="nav-item menu-items">
-                        <a className="nav-link" href="pages/tables/basic-table.html">
+                        <NavLink className="nav-link" to="digitalmenu">
                             <span className="menu-icon">
-                                <i className="mdi mdi-table-large" />
+                                <i className="mdi mdi-panorama" />
                             </span>
-                            <span className="menu-title">Tables</span>
-                        </a>
+                            <span className="menu-title">Digital Ads Menu</span>
+                        </NavLink>
                     </li>
                     <li className="nav-item menu-items">
-                        <a className="nav-link" href="pages/charts/chartjs.html">
+                        <NavLink className="nav-link" to="appsmenu">
                             <span className="menu-icon">
-                                <i className="mdi mdi-chart-bar" />
+                                <i className="mdi mdi-apps" />
                             </span>
-                            <span className="menu-title">Charts</span>
-                        </a>
+                            <span className="menu-title">Apps Menu</span>
+                        </NavLink>
+                    </li>
+                    <li className="nav-item nav-category">
+                        <span className="nav-link">Job Vacancy</span>
                     </li>
                     <li className="nav-item menu-items">
-                        <a className="nav-link" href="pages/icons/mdi.html">
+                        <NavLink className="nav-link" to="careermenu">
                             <span className="menu-icon">
-                                <i className="mdi mdi-contacts" />
+                                <i className="mdi mdi-briefcase" />
                             </span>
-                            <span className="menu-title">Icons</span>
-                        </a>
+                            <span className="menu-title">Career Menu</span>
+                        </NavLink>
+                    </li>
+                    <li className="nav-item nav-category">
+                        <span className="nav-link">Contact</span>
                     </li>
                     <li className="nav-item menu-items">
-                        <a className="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                        <NavLink className="nav-link" to="careermenu">
                             <span className="menu-icon">
-                                <i className="mdi mdi-security" />
+                                <i className="mdi mdi-wechat" />
                             </span>
-                            <span className="menu-title">User Pages</span>
-                            <i className="menu-arrow" />
-                        </a>
-                        <div className="collapse" id="auth">
-                            <ul className="nav flex-column sub-menu">
-                                <li className="nav-item"> <a className="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-                                <li className="nav-item"> <a className="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                                <li className="nav-item"> <a className="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-                                <li className="nav-item"> <a className="nav-link" href="pages/samples/login.html"> Login </a></li>
-                                <li className="nav-item"> <a className="nav-link" href="pages/samples/register.html"> Register </a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li className="nav-item menu-items">
-                        <a className="nav-link" href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html">
-                            <span className="menu-icon">
-                                <i className="mdi mdi-file-document-box" />
-                            </span>
-                            <span className="menu-title">Documentation</span>
-                        </a>
+                            <span className="menu-title">Contact Menu</span>
+                        </NavLink>
                     </li>
                 </ul>
             </sidebar>

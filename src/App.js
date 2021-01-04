@@ -1,9 +1,12 @@
 import './App.css';
+import React,
+{
+  useState
+} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  NavLink
+  Route
 } from 'react-router-dom';
 import Sidebar from './Components/Sidebar';
 import Navbar from './Components/Navbar';
@@ -12,13 +15,22 @@ import Dashboard from './Screens/Dashboard';
 import Login from './Components/Login';
 
 function App() {
+  const [state, setState] = useState({
+    loggedIn: false,
+    user: {}
+  })
+
   return (
     <>
       <Router>
         <Switch>
-          <Route exact path="/">
-            <Login />
-          </Route>
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <Login {...props} data={state} setData={setState} />
+            )}
+          />
 
           <div className="container-scroller">
 

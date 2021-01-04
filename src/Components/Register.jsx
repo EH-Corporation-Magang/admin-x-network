@@ -1,9 +1,8 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, {
-    useState,
-    useEffect
+    useState
 } from 'react';
-import MySwal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 function Register(props) {
@@ -11,7 +10,7 @@ function Register(props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [image, setImage] = useState('')
-    const Swal = withReactContent(MySwal)
+    const MySwal = withReactContent(Swal)
 
     const registerForm = async e => {
         e.preventDefault()
@@ -29,7 +28,7 @@ function Register(props) {
                 setEmail('')
                 setPassword('')
                 setImage('')
-                Swal.fire({
+                MySwal.fire({
                     icon: 'success',
                     title: 'Success Register',
                 }).then(function () {

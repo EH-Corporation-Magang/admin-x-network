@@ -3,13 +3,13 @@ import React, {
     useState,
     useEffect
 } from 'react';
-import MySwal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 function Login(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
-    const Swal = withReactContent(MySwal)
+    const MySwal = withReactContent(Swal)
 
     const loginForm = async e => {
         e.preventDefault()
@@ -20,8 +20,32 @@ function Login(props) {
                 method: 'POST',
                 body: formData
             })
-            const datalogin = await fetchLogin.json();
-            console.log(datalogin);
+            const datalogin = await fetchLogin.json()
+            console.log(datalogin)
+            if (datalogin.success) {
+                localStorage.setItem('username', datalogin.result.username)
+                localStorage.setItem('gambaruser', datalogin.result.gambaruser)
+                localStorage.setItem('token', datalogin.result.token)
+                props.setData({
+                    loggedIn: true,
+                    user: datalogin.result.username
+                })
+                console.log(localStorage.getItem('gambaruser'))
+                MySwal.fire({
+                    title: 'Loading...',
+                    timer: 1000,
+                    didOpen: () => {
+                        MySwal.showLoading()
+                    }
+                })
+                props.history.push('/dashboard')
+            } else {
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'There is an error!',
+                    text: 'Email or password is not correct!'
+                })
+            }
         } catch (error) {
             console.log(error)
             alert(error)
@@ -29,7 +53,9 @@ function Login(props) {
     }
 
     useEffect(() => {
-
+        if (localStorage.getItem('token')) {
+            props.history.push('/dashboard')
+        }
     }, [])
 
     return (

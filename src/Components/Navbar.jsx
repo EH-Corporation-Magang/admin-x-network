@@ -1,10 +1,39 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import {
-    NavLink
-} from 'react-router-dom';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
-function Navbar() {
+function Navbar(props) {
+    const MySwal = withReactContent(Swal);
+    const logout = async () => {
+        try {
+            const getLogout = await fetch(`http://localhost:8000/logout`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            const logout = await getLogout.json()
+            console.log(logout)
+            if (logout.success) {
+                MySwal.fire({
+                    title: 'currently logged out of account...',
+                    timer: 1000,
+                    didOpen: () => {
+                        MySwal.showLoading()
+                    },
+                })
+                localStorage.removeItem('token')
+                props.history.push('/')
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const clear = () => {
+        window.localStorage.clear();
+    }
+
     return (
         <>
             <nav className="navbar p-0 fixed-top d-flex flex-row">
@@ -26,15 +55,15 @@ function Navbar() {
                         <li className="nav-item dropdown">
                             <a className="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                                 <div className="navbar-profile">
-                                    <img className="img-xs rounded-circle" src="assets/images/faces/face15.jpg" alt="profile-img" />
-                                    <p className="mb-0 d-none d-sm-block navbar-profile-name">Admin</p>
+                                    <img className="img-xs rounded-circle" src={localStorage.getItem('gambaruser')} alt="profile-img" />
+                                    <p className="mb-0 d-none d-sm-block navbar-profile-name">{localStorage.getItem('username')}</p>
                                     <i className="mdi mdi-menu-down d-none d-sm-block" />
                                 </div>
                             </a>
                             <div className="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
                                 <h6 className="p-3 mb-0">Profile</h6>
                                 <div className="dropdown-divider" />
-                                <NavLink to="/" className="dropdown-item preview-item">
+                                <button onClick={logout} className="dropdown-item preview-item">
                                     <div className="preview-thumbnail">
                                         <div className="preview-icon bg-dark rounded-circle">
                                             <i className="mdi mdi-logout text-danger" />
@@ -43,7 +72,7 @@ function Navbar() {
                                     <div className="preview-item-content">
                                         <p className="preview-subject mb-1">Log out</p>
                                     </div>
-                                </NavLink>
+                                </button>
                             </div>
                         </li>
                     </ul>

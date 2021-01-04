@@ -45,7 +45,11 @@ function App() {
             <div className="container-fluid page-body-wrapper">
 
               {/* navbar */}
-              <Navbar />
+              <Route
+                render={props => (
+                  <Navbar {...props} data={state} setData={setState} />
+                )}
+              />
 
               <div className="main-panel">
                 <div className="content-wrapper">

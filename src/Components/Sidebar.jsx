@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import {
+    NavLink
+} from 'react-router-dom';
 
 function Sidebar() {
     return (
@@ -19,11 +21,11 @@ function Sidebar() {
                         <div className="profile-desc">
                             <div className="profile-pic">
                                 <div className="count-indicator">
-                                    <img className="img-xs rounded-circle " src="assets/images/faces/face15.jpg" alt="profile-img" />
+                                    <img className="img-xs rounded-circle " src={localStorage.getItem('gambaruser')} alt="profile-img" />
                                     <span className="count bg-success" />
                                 </div>
                                 <div className="profile-name">
-                                    <h5 className="mb-0 font-weight-normal">Admin</h5>
+                                    <h5 className="mb-0 font-weight-normal">{localStorage.getItem('username')}</h5>
                                 </div>
                             </div>
                         </div>

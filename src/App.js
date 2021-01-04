@@ -14,6 +14,7 @@ import Footer from './Components/Footer';
 import Dashboard from './Screens/Dashboard';
 import Login from './Components/Login';
 import Register from './Components/Register';
+import '@sweetalert2/theme-dark';
 
 function App() {
   const [state, setState] = useState({

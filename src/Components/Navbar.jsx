@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2/src/sweetalert2.js'
 import withReactContent from 'sweetalert2-react-content';
 
 function Navbar(props) {

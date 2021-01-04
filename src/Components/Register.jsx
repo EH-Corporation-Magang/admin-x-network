@@ -6,31 +6,53 @@ import React, {
 import MySwal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
-function Login(props) {
-    const [email, setEmail] = useState('');
+function Register(props) {
+    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [image, setImage] = useState('')
     const Swal = withReactContent(MySwal)
 
-    const loginForm = async e => {
+    const registerForm = async e => {
         e.preventDefault()
         let formData = new FormData(e.target)
 
         try {
-            const fetchLogin = await fetch(`http://localhost:8000/login`, {
+            const register = await fetch(`http://localhost:8000/register`, {
                 method: 'POST',
                 body: formData
             })
-            const datalogin = await fetchLogin.json();
-            console.log(datalogin);
+            const dataregister = await register.json()
+            console.log(dataregister)
+            if (dataregister.success) {
+                setUsername('')
+                setEmail('')
+                setPassword('')
+                setImage('')
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success Register',
+                }).then(function () {
+                    window.location.replace('/')
+                })
+            }
+
+            if (!dataregister.success) {
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'There is an error!',
+                    html:
+                        '<ul> ' +
+                        '<li><p style="color: red;">there are columns that have not been filled</p></li> ' +
+                        '</ul > '
+                })
+            }
         } catch (error) {
             console.log(error)
             alert(error)
         }
     }
 
-    useEffect(() => {
-
-    }, [])
 
     return (
         <>
@@ -47,8 +69,24 @@ function Login(props) {
                             <img src="assets/images/logox.svg" style={{ height: "40px" }} alt="logo" className="logo" />
                         </div>
                         <div className="login-wrapper my-auto">
-                            <h1 className="login-title">Log in</h1>
-                            <form onSubmit={loginForm}>
+                            <h1 className="login-title">Register</h1>
+                            <form onSubmit={registerForm}>
+                                <div className="form-group">
+                                    <label htmlFor="username">Username</label>
+                                    <input
+                                        style={{
+                                            borderRadius: "5px",
+                                            padding: "10px"
+                                        }}
+                                        type="text"
+                                        className="form-control"
+                                        name="username"
+                                        placeholder="enter your username"
+                                        value={username}
+                                        onChange={e => setUsername(e.target.value)}
+                                        required
+                                    />
+                                </div>
                                 <div className="form-group">
                                     <label htmlFor="email">Email</label>
                                     <input
@@ -58,7 +96,6 @@ function Login(props) {
                                         }}
                                         type="email"
                                         name="email"
-                                        id="email"
                                         className="form-control"
                                         placeholder="email@example.com"
                                         value={email}
@@ -74,7 +111,6 @@ function Login(props) {
                                     }}
                                         type="password"
                                         name="password"
-                                        id="password"
                                         className="form-control"
                                         placeholder="enter your passsword"
                                         value={password}
@@ -82,11 +118,22 @@ function Login(props) {
                                         required
                                     />
                                 </div>
+                                <div className="form-group mb-4">
+                                    <label htmlFor="exampleFormControlFile1">Image User</label>
+                                    <input
+                                        type="file"
+                                        name="gambar_user"
+                                        className="form-control-file"
+                                        id="exampleFormControlFile1"
+                                        value={image}
+                                        onChange={e => setImage(e.target.value)}
+                                    />
+                                </div>
                                 <button type="submit" className="btn btn-block login-btn">
-                                    Login
+                                    Register
                                 </button>
                             </form>
-                            <p style={{ marginTop: "15%" }} className="login-wrapper-footer-text">Don't have an account? <a href="/register" className="text-reset">Register here</a></p>
+                            <p style={{ marginTop: "15%" }} className="login-wrapper-footer-text">Have an account? <a href="/" className="text-reset">Login here</a></p>
                         </div>
                     </div>
                     <div className="col-sm-6 px-0 d-none d-sm-block">
@@ -95,7 +142,7 @@ function Login(props) {
                 </div>
             </div>
 
-            {/* script for login */}
+            {/* script for register */}
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -103,4 +150,4 @@ function Login(props) {
     )
 }
 
-export default Login
+export default Register

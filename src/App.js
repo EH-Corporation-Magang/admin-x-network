@@ -13,6 +13,7 @@ import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Dashboard from './Screens/Dashboard';
 import Login from './Components/Login';
+import Register from './Components/Register';
 
 function App() {
   const [state, setState] = useState({
@@ -31,6 +32,10 @@ function App() {
               <Login {...props} data={state} setData={setState} />
             )}
           />
+
+          <Route path="/register">
+            <Register />
+          </Route>
 
           <div className="container-scroller">
 

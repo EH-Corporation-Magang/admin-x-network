@@ -8,12 +8,12 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import '@sweetalert2/theme-dark';
 import Navbar from './Components/Navbar';
 import Dashboard from './Screens/Dashboard';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import CareerMenu from './Screens/CareerMenu';
+import '@sweetalert2/theme-dark';
 
 function App() {
   const [state, setState] = useState({
@@ -43,7 +43,7 @@ function App() {
             <nav className="sidebar sidebar-offcanvas" id="sidebar">
               <div className="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
                 <a className="sidebar-brand brand-logo" href="dashboard">
-                  <img src="assets/images/logox.svg" style={{ height: "60px" }} alt="logo" />
+                  <img src="assets/images/logox1.png" style={{ height: "40px", marginLeft: "40px" }} alt="logo" />
                 </a>
                 <a className="sidebar-brand brand-logo-mini" href="dashboard">
                   <img src="assets/images/logo-mini.svg" alt="logo" />

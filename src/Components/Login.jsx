@@ -56,7 +56,7 @@ function Login(props) {
         if (localStorage.getItem('token')) {
             props.history.push('/dashboard')
         }
-    }, [])
+    }, [props.history])
 
     return (
         <>

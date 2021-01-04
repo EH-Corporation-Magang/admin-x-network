@@ -30,9 +30,9 @@ function Navbar(props) {
         }
     }
 
-    const clear = () => {
-        window.localStorage.clear();
-    }
+    // const clear = () => {
+    //     window.localStorage.clear();
+    // }
 
     return (
         <>
@@ -41,16 +41,6 @@ function Navbar(props) {
                     <a className="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
                 </div>
                 <div className="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-                    <button className="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-                        <span className="mdi mdi-menu" />
-                    </button>
-                    <ul className="navbar-nav w-100">
-                        <li className="nav-item w-50">
-                            <form className="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                                <input type="text" className="form-control" placeholder="Search products" />
-                            </form>
-                        </li>
-                    </ul>
                     <ul className="navbar-nav navbar-nav-right">
                         <li className="nav-item dropdown">
                             <a className="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
@@ -63,6 +53,16 @@ function Navbar(props) {
                             <div className="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
                                 <h6 className="p-3 mb-0">Profile</h6>
                                 <div className="dropdown-divider" />
+                                <button onClick={logout} className="dropdown-item preview-item">
+                                    <div className="preview-thumbnail">
+                                        <div className="preview-icon bg-dark rounded-circle">
+                                            <i className="mdi mdi-account-circle text-warning" />
+                                        </div>
+                                    </div>
+                                    <div className="preview-item-content">
+                                        <p className="preview-subject mb-1">Profile</p>
+                                    </div>
+                                </button>
                                 <button onClick={logout} className="dropdown-item preview-item">
                                     <div className="preview-thumbnail">
                                         <div className="preview-icon bg-dark rounded-circle">

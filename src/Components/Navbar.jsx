@@ -50,7 +50,7 @@ function Navbar(props) {
                             <div className="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
                                 <h6 className="p-3 mb-0">Profile</h6>
                                 <div className="dropdown-divider" />
-                                <button onClick={logout} className="dropdown-item preview-item">
+                                <a href="profilemenu" className="dropdown-item preview-item">
                                     <div className="preview-thumbnail">
                                         <div className="preview-icon bg-dark rounded-circle">
                                             <i className="mdi mdi-account-circle text-warning" />
@@ -59,7 +59,7 @@ function Navbar(props) {
                                     <div className="preview-item-content">
                                         <p className="preview-subject mb-1">Profile</p>
                                     </div>
-                                </button>
+                                </a>
                                 <button onClick={logout} className="dropdown-item preview-item">
                                     <div className="preview-thumbnail">
                                         <div className="preview-icon bg-dark rounded-circle">

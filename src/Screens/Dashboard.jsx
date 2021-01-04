@@ -5,6 +5,14 @@ import React from 'react';
 const Dashboard = () => {
     return (
         <>
+            <div className="page-header">
+                <h3 className="page-title"> Dashboard </h3>
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item active" aria-current="page">Dashboard</li>
+                    </ol>
+                </nav>
+            </div>
             <div className="row">
                 <div className="col-xl-3 col-sm-6 grid-margin stretch-card">
                     <div className="card">

@@ -13,6 +13,7 @@ import Dashboard from './Screens/Dashboard';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import CareerMenu from './Screens/CareerMenu';
+import ProfileMenu from './Screens/ProfileMenu';
 import '@sweetalert2/theme-dark';
 
 function App() {
@@ -154,6 +155,11 @@ function App() {
                   {/* Career Menu */}
                   <Route path="/careermenu">
                     <CareerMenu />
+                  </Route>
+
+                  {/* Profile Menu */}
+                  <Route path="/profilemenu">
+                    <ProfileMenu />
                   </Route>
 
                 </div>

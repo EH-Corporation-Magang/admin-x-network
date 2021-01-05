@@ -16,10 +16,11 @@ const CareerMenu = () => {
     const [joblink, setJobLink] = useState('')
     const [loading, setLoading] = useState(false)
     const MySwal = withReactContent(Swal)
+    const URL_API = `http://localhost:8000`
 
     const fetchJob = async () => {
         try {
-            const fetchApiJob = await fetch(`http://localhost:8000/job`, {
+            const fetchApiJob = await fetch(`${URL_API}/job`, {
                 method: 'GET',
             })
             const jobdata = await fetchApiJob.json()
@@ -107,7 +108,7 @@ const CareerMenu = () => {
         )
         e.preventDefault();
         try {
-            const fetchApi = await fetch(`http://localhost:8000/job/store`, {
+            const fetchApi = await fetch(`${URL_API}/job/store`, {
                 method: 'POST',
                 body: JSON.stringify({
                     jobposition,
@@ -166,7 +167,7 @@ const CareerMenu = () => {
     // Get id job
     const getIdJob = async e => {
         try {
-            const data = await fetch(`http://localhost:8000/job/get/${e.target.id}`, {
+            const data = await fetch(`${URL_API}/job/get/${e.target.id}`, {
                 method: 'GET'
             })
             const result = await data.json()
@@ -184,7 +185,7 @@ const CareerMenu = () => {
     const handleEdit = async e => {
         e.preventDefault();
         try {
-            const updateJob = await fetch(`http://localhost:8000/job/update/${idJob}`, {
+            const updateJob = await fetch(`${URL_API}/job/update/${idJob}`, {
                 method: 'PUT',
                 body: JSON.stringify({
                     jobposition,
@@ -251,7 +252,7 @@ const CareerMenu = () => {
                     'success'
                 ).then(async () => {
                     try {
-                        const siswaDelete = await fetch(`http://localhost:8000/job/delete/${id}`, {
+                        const siswaDelete = await fetch(`${URL_API}/job/delete/${id}`, {
                             method: 'DELETE'
                         })
                         await siswaDelete

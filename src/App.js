@@ -95,14 +95,6 @@ function App() {
                   </a>
                 </li>
                 <li className="nav-item menu-items">
-                  <a className="nav-link" href="digitalmenu">
-                    <span className="menu-icon">
-                      <i className="mdi mdi-panorama" />
-                    </span>
-                    <span className="menu-title">Digital Ads Menu</span>
-                  </a>
-                </li>
-                <li className="nav-item menu-items">
                   <a className="nav-link" href="appsmenu">
                     <span className="menu-icon">
                       <i className="mdi mdi-apps" />

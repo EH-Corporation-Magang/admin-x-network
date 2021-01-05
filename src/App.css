@@ -37,3 +37,58 @@
     transform: rotate(360deg);
   }
 }
+
+.paginate {
+  display: flex;
+  list-style: none;
+  margin-left: 50%;
+  color: white;
+}
+
+.page {
+  padding: 10px;
+  background-color: black;
+  border-radius: 6px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.disabled {
+  cursor: not-allowed;
+
+}
+
+.activepaginate {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.previous {
+  padding: 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+  padding-left: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: black;
+}
+
+.break {
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.next {
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding-right: 15px;
+  cursor: pointer;
+  background-color: black;
+}

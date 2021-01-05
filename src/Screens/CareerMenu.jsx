@@ -315,6 +315,7 @@ const CareerMenu = () => {
                                     sortable={false}
                                     striped
                                     data={dataJob(tableJob)}
+                                    responsive={true}
                                 />
                             </div>
                         </div>

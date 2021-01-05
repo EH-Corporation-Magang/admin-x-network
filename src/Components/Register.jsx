@@ -15,7 +15,6 @@ function Register(props) {
     const registerForm = async e => {
         e.preventDefault()
         let formData = new FormData(e.target)
-
         try {
             const register = await fetch(`http://localhost:8000/register`, {
                 method: 'POST',
@@ -52,7 +51,6 @@ function Register(props) {
         }
     }
 
-
     return (
         <>
             {/* css for login */}
@@ -65,7 +63,7 @@ function Register(props) {
                 <div className="row">
                     <div className="col-sm-6 login-section-wrapper">
                         <div className="brand-wrapper">
-                            <img src="assets/images/logox.svg" style={{ height: "40px" }} alt="logo" className="logo" />
+                            <img src="assets/images/logox1.png" style={{ height: "40px" }} alt="logo" className="logo" />
                         </div>
                         <div className="login-wrapper my-auto">
                             <h1 className="login-title">Register</h1>

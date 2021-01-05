@@ -5,11 +5,11 @@ import React, {
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
-const ProfileMenu = () => {
+function ProfileMenu(props) {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [gambar_user, setImage] = useState('')
+    const [image, setImage] = useState('')
     const [iduser, setIdUser] = useState('')
     const MySwal = withReactContent(Swal)
 
@@ -29,18 +29,40 @@ const ProfileMenu = () => {
         }
     }
 
+    const logout = async () => {
+        try {
+            const getLogout = await fetch(`http://localhost:8000/logout`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            const logout = await getLogout.json()
+            console.log(logout)
+            if (logout.success) {
+                MySwal.fire({
+                    title: 'currently logged out of account...',
+                    timer: 1000,
+                    didOpen: () => {
+                        MySwal.showLoading()
+                    },
+                })
+                localStorage.removeItem('token')
+                props.history.push('/')
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const handleEdit = async e => {
         e.preventDefault()
+        let formData = new FormData(e.target)
+        console.log(formData)
         try {
+            console.log(image)
             const updateUser = await fetch(`http://localhost:8000/user/update/${iduser}`, {
-                method: 'PUT',
-                body: JSON.stringify({
-                    username,
-                    email,
-                    password,
-                    gambar_user
-                }),
-                headers: { 'Content-Type': 'application/json' },
+                method: 'POST',
+                body: formData,
             })
             const update = await updateUser.json()
             console.log(update)
@@ -48,18 +70,13 @@ const ProfileMenu = () => {
                 MySwal.fire({
                     icon: 'success',
                     title: 'Succes Edit Data User',
-                    toast: true,
-                    position: 'top-end',
+                    text: 'You Will Redirect To Login Screen And Dont Worry, Just Login Again',
                     showConfirmButton: false,
-                    timer: 1000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    timer: 5000,
+                    didOpen: () => {
+                        MySwal.showLoading()
                     }
                 }).then(function () {
-                    getIdUser()
-                    console.log(getIdUser())
                     MySwal.fire({
                         title: 'Loading...',
                         timer: 1000,
@@ -67,6 +84,7 @@ const ProfileMenu = () => {
                             MySwal.showLoading()
                         },
                     })
+                    logout()
                 })
             }
         } catch (error) {
@@ -107,6 +125,7 @@ const ProfileMenu = () => {
                                         id="exampleInputUsername1"
                                         placeholder="Username"
                                         style={{ color: "white" }}
+                                        name="username"
                                         value={username}
                                         onChange={e => setUsername(e.target.value)}
                                     />
@@ -119,6 +138,7 @@ const ProfileMenu = () => {
                                         id="exampleInputEmail1"
                                         placeholder="Email"
                                         style={{ color: "white" }}
+                                        name="email"
                                         value={email}
                                         onChange={e => setEmail(e.target.value)}
                                     />
@@ -131,6 +151,7 @@ const ProfileMenu = () => {
                                         id="exampleInputPassword1"
                                         placeholder="Password"
                                         style={{ color: "white" }}
+                                        name="password"
                                         value={password}
                                         onChange={e => setPassword(e.target.value)}
                                     />
@@ -142,7 +163,7 @@ const ProfileMenu = () => {
                                         name="gambar_user"
                                         className="form-control-file"
                                         id="exampleFormControlFile1"
-                                        value={gambar_user}
+                                        value={image}
                                         onChange={e => setImage(e.target.value)}
                                     />
                                 </div>

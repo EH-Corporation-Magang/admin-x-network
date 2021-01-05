@@ -158,9 +158,13 @@ function App() {
                   </Route>
 
                   {/* Profile Menu */}
-                  <Route path="/profilemenu">
-                    <ProfileMenu />
-                  </Route>
+                  <Route
+                    path="/profilemenu"
+                    render={props => (
+                      <ProfileMenu {...props} data={state} setData={setState} />
+                    )}
+                  />
+
 
                 </div>
 

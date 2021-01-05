@@ -31,7 +31,6 @@ function Login(props) {
                     loggedIn: true,
                     user: datalogin.result.username
                 })
-                console.log(localStorage.getItem('gambaruser'))
                 MySwal.fire({
                     title: 'Loading...',
                     timer: 1000,
@@ -71,7 +70,7 @@ function Login(props) {
                 <div className="row">
                     <div className="col-sm-6 login-section-wrapper">
                         <div className="brand-wrapper">
-                            <img src="assets/images/logox.svg" style={{ height: "40px" }} alt="logo" className="logo" />
+                            <img src="assets/images/logox1.png" style={{ height: "40px" }} alt="logo" className="logo" />
                         </div>
                         <div className="login-wrapper my-auto">
                             <h1 className="login-title">Log in</h1>

@@ -16,6 +16,7 @@ const Dashboard = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [jumlahContact, setJumlahContact] = useState(0)
     const [jumlahJob, setJumlahJob] = useState(0)
+    const [jumlahProduct, setJumlahProduct] = useState(0)
     const Swal = withReactContent(MySwal)
     const URL_API = `http://localhost:8000`
 
@@ -64,9 +65,19 @@ const Dashboard = () => {
         setJumlahJob(job.result.length)
     }
 
+    const getAmoutApps = async () => {
+        const dataapps = await fetch(`${URL_API}/product`, {
+            method: 'GET'
+        })
+        const apps = await dataapps.json()
+        setJumlahProduct(apps.result.length)
+    }
+
     useEffect(() => {
         getAmountContact().then(() => {
             getAmountJob()
+        }).then(() => {
+            getAmoutApps()
         })
     }, [])
 
@@ -90,7 +101,7 @@ const Dashboard = () => {
                                 <div className="row">
                                     <div className="col-9">
                                         <div className="d-flex align-items-center align-self-start">
-                                            <h3 className="text-success mb-0">5</h3>
+                                            <h3 className="text-success mb-0"><CountUp end={jumlahProduct} duration={5} /></h3>
                                         </div>
                                     </div>
                                     <div className="col-3">

@@ -11,12 +11,13 @@ function Register(props) {
     const [password, setPassword] = useState('')
     const [image, setImage] = useState('')
     const MySwal = withReactContent(Swal)
+    const URL_API = `http://localhost:8000`
 
     const registerForm = async e => {
         e.preventDefault()
         let formData = new FormData(e.target)
         try {
-            const register = await fetch(`http://localhost:8000/register`, {
+            const register = await fetch(`${URL_API}/register`, {
                 method: 'POST',
                 body: formData
             })

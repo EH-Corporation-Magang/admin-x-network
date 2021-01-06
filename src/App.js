@@ -15,6 +15,7 @@ import Register from './Components/Register';
 import CareerMenu from './Screens/CareerMenu';
 import ProfileMenu from './Screens/ProfileMenu';
 import ContactMenu from './Screens/ContactMenu';
+import AppsMenu from './Screens/AppsMenu';
 import '@sweetalert2/theme-dark';
 
 function App() {
@@ -69,7 +70,7 @@ function App() {
                   <span className="nav-link">Navigation</span>
                 </li>
                 <li className="nav-item menu-items">
-                  <a className="nav-link" href="/dashboard">
+                  <a className="nav-link" href="dashboard">
                     <span className="menu-icon">
                       <i className="mdi mdi-speedometer" />
                     </span>
@@ -80,7 +81,7 @@ function App() {
                   <span className="nav-link">Other Menu</span>
                 </li>
                 <li className="nav-item menu-items">
-                  <a className="nav-link" href="/radiomenu">
+                  <a className="nav-link" href="radiomenu">
                     <span className="menu-icon">
                       <i className="mdi mdi-radio" />
                     </span>
@@ -88,7 +89,7 @@ function App() {
                   </a>
                 </li>
                 <li className="nav-item menu-items">
-                  <a className="nav-link" href="/messagemenu">
+                  <a className="nav-link" href="messagemenu">
                     <span className="menu-icon">
                       <i className="mdi mdi-message-text" />
                     </span>
@@ -100,7 +101,7 @@ function App() {
                     <span className="menu-icon">
                       <i className="mdi mdi-apps" />
                     </span>
-                    <span className="menu-title">Apps Menu</span>
+                    <span className="menu-title">Product Menu</span>
                   </a>
                 </li>
                 <li className="nav-item nav-category">
@@ -161,6 +162,11 @@ function App() {
                   {/* Contact */}
                   <Route path="/contactmenu">
                     <ContactMenu />
+                  </Route>
+
+                  {/* Apps */}
+                  <Route path="/appsmenu">
+                    <AppsMenu />
                   </Route>
 
                 </div>

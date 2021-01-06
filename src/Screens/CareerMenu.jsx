@@ -99,12 +99,6 @@ const CareerMenu = () => {
 
     // handle submit add job
     const handleSubmit = async e => {
-        console.log(
-            jobposition,
-            joblink,
-            jobdescription,
-            joblocation
-        )
         e.preventDefault();
         try {
             const fetchApi = await fetch(`${URL_API}/job/store`, {

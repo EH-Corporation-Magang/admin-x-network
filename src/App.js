@@ -14,6 +14,7 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import CareerMenu from './Screens/CareerMenu';
 import ProfileMenu from './Screens/ProfileMenu';
+import ContactMenu from './Screens/ContactMenu';
 import '@sweetalert2/theme-dark';
 
 function App() {
@@ -157,6 +158,10 @@ function App() {
                     )}
                   />
 
+                  {/* Contact */}
+                  <Route path="/contactmenu">
+                    <ContactMenu />
+                  </Route>
 
                 </div>
 

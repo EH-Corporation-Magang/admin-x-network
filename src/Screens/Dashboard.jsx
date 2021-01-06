@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import ReactPaginate from 'react-paginate';
 import CountUp from 'react-countup';
-import Swal from 'sweetalert2';
+import MySwal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 const Dashboard = () => {
@@ -16,12 +16,14 @@ const Dashboard = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [jumlahContact, setJumlahContact] = useState(0)
     const [jumlahJob, setJumlahJob] = useState(0)
-    const MySwal = withReactContent(Swal)
+    const Swal = withReactContent(MySwal)
     const URL_API = `http://localhost:8000`
 
     useEffect(() => {
         if (currentPage) {
-            fetchContact()
+            fetchContact().then(() => {
+                setLoading(true)
+            })
         }
     }, [currentPage])
 
@@ -34,7 +36,6 @@ const Dashboard = () => {
             if (datacontact.success) {
                 setPageCount(datacontact.from)
                 setContact(datacontact.result.data)
-                setLoading(true)
             }
         } catch (error) {
             console.log(error)
@@ -71,7 +72,7 @@ const Dashboard = () => {
 
 
     if (loading) {
-        MySwal.close()
+        Swal.close()
         return (
             <>
                 <div className="page-header">
@@ -221,10 +222,10 @@ const Dashboard = () => {
             </>
         )
     } else {
-        MySwal.fire({
+        Swal.fire({
             title: 'Loading...',
             didOpen: () => {
-                MySwal.showLoading()
+                Swal.showLoading()
             },
         })
     }

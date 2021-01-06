@@ -3,7 +3,7 @@ import React, {
     useState,
     useEffect
 } from 'react';
-import Swal from 'sweetalert2';
+import MySwal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { MDBDataTable } from 'mdbreact';
 
@@ -15,7 +15,7 @@ const CareerMenu = () => {
     const [jobdescription, setJobDescription] = useState('')
     const [joblink, setJobLink] = useState('')
     const [loading, setLoading] = useState(false)
-    const MySwal = withReactContent(Swal)
+    const Swal = withReactContent(MySwal)
     const URL_API = `http://localhost:8000`
 
     const fetchJob = async () => {
@@ -24,10 +24,10 @@ const CareerMenu = () => {
                 method: 'GET',
             })
             const jobdata = await fetchApiJob.json()
-            console.log(jobdata.result)
             dataTableJob(jobdata.result)
         } catch (error) {
             console.log('error')
+            alert(error)
         }
     }
 
@@ -55,7 +55,6 @@ const CareerMenu = () => {
                 </>
             rowsData.push(rowItem)
         }
-
         setTableJob(rowsData)
     }
 
@@ -121,7 +120,7 @@ const CareerMenu = () => {
             const create = await fetchApi.json()
             console.log(create)
             if (create.success) {
-                MySwal.fire({
+                Swal.fire({
                     icon: 'success',
                     title: 'Succes Add Data Job',
                     toast: true,
@@ -142,17 +141,17 @@ const CareerMenu = () => {
                         setLoading(true)
                     });
                     window.$('#addModal').modal('hide')
-                    MySwal.fire({
+                    Swal.fire({
                         title: 'Loading...',
                         timer: 1000,
                         didOpen: () => {
-                            MySwal.showLoading()
+                            Swal.showLoading()
                         },
                     })
                 })
             }
         } catch (error) {
-            MySwal.fire({
+            Swal.fire({
                 icon: 'error',
                 title: 'There is an error!',
                 html:
@@ -197,7 +196,7 @@ const CareerMenu = () => {
             })
             const update = await updateJob.json()
             if (update.success) {
-                MySwal.fire({
+                Swal.fire({
                     icon: 'success',
                     title: 'Succes Edit Data Job',
                     toast: true,
@@ -218,11 +217,11 @@ const CareerMenu = () => {
                         setLoading(true)
                     });
                     window.$('#editModal').modal('hide')
-                    MySwal.fire({
+                    Swal.fire({
                         title: 'Loading...',
                         timer: 1000,
                         didOpen: () => {
-                            MySwal.showLoading()
+                            Swal.showLoading()
                         },
                     })
                 })
@@ -236,7 +235,7 @@ const CareerMenu = () => {
     const deleteJob = (e) => {
         const id = e.target.id
         console.log(id)
-        MySwal.fire({
+        Swal.fire({
             title: 'Are you sure to delete this data?',
             text: "You won't be able to revert this!",
             icon: 'warning',
@@ -246,7 +245,7 @@ const CareerMenu = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                MySwal.fire(
+                Swal.fire(
                     'Deleted!',
                     'Data Siswa has been deleted.',
                     'success'
@@ -263,11 +262,11 @@ const CareerMenu = () => {
                     fetchJob().then(() => {
                         setLoading(true)
                     });
-                    MySwal.fire({
+                    Swal.fire({
                         title: 'Loading...',
                         timer: 1000,
                         didOpen: () => {
-                            MySwal.showLoading()
+                            Swal.showLoading()
                         },
                     })
                 })
@@ -276,9 +275,10 @@ const CareerMenu = () => {
     }
 
     if (loading) {
-        MySwal.close()
+        Swal.close()
         return (
             <>
+                {/* header */}
                 <div className="page-header">
                     <h3 className="page-title"> Career Menu </h3>
                     <nav aria-label="breadcrumb">
@@ -288,6 +288,7 @@ const CareerMenu = () => {
                         </ol>
                     </nav>
                 </div>
+                {/* content */}
                 <div className="row" style={{ marginBottom: "125px" }}>
                     {/* Area Table Siswa */}
                     <div className="col-xl-12 col-lg-12">
@@ -472,10 +473,10 @@ const CareerMenu = () => {
             </>
         )
     } else {
-        MySwal.fire({
+        Swal.fire({
             title: 'Loading...',
             didOpen: () => {
-                MySwal.showLoading()
+                Swal.showLoading()
             },
         })
     }

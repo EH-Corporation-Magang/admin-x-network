@@ -6,6 +6,12 @@ import withReactContent from 'sweetalert2-react-content';
 function Navbar(props) {
     const MySwal = withReactContent(Swal);
     const logout = async () => {
+        MySwal.fire({
+            title: 'currently logged out of account...',
+            didOpen: () => {
+                MySwal.showLoading()
+            },
+        })
         try {
             const getLogout = await fetch(`http://localhost:8000/logout`, {
                 headers: {
@@ -15,15 +21,9 @@ function Navbar(props) {
             const logout = await getLogout.json()
             console.log(logout)
             if (logout.success) {
-                MySwal.fire({
-                    title: 'currently logged out of account...',
-                    timer: 1000,
-                    didOpen: () => {
-                        MySwal.showLoading()
-                    },
-                })
                 localStorage.removeItem('token')
                 props.history.push('/')
+                MySwal.close()
             }
         } catch (error) {
             console.log(error)

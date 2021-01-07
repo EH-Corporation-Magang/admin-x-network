@@ -8,7 +8,6 @@ import { MDBDataTable } from 'mdbreact';
 
 const ContactMenu = () => {
     const [tableContact, setTableContact] = useState('')
-    // const [idContact, setIdContact] = useState('')
     const [loading, setLoading] = useState(false)
     const Swal = withReactContent(MySwal)
     const URL_API = `http://localhost:8000`
@@ -21,7 +20,7 @@ const ContactMenu = () => {
 
     const fetchContact = async () => {
         try {
-            const fetchApiContact = await fetch(`${URL_API}/contact/count`, {
+            const fetchApiContact = await fetch(`${URL_API}/contact/all`, {
                 method: 'GET'
             })
             const contactdata = await fetchApiContact.json()
@@ -167,6 +166,7 @@ const ContactMenu = () => {
                                     striped
                                     data={dataContact(tableContact)}
                                     responsive={true}
+                                    noBottomColumns={true}
                                 />
                             </div>
                         </div>

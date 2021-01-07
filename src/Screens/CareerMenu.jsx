@@ -309,6 +309,7 @@ const CareerMenu = () => {
                                     style={{ color: "white" }}
                                     sortable={false}
                                     striped
+                                    noBottomColumns={true}
                                     data={dataJob(tableJob)}
                                     responsive={true}
                                 />

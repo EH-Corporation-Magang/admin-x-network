@@ -182,7 +182,7 @@ const Dashboard = () => {
                                     <p className="breadcrumb-item mb-1"><a href="/contactmenu">See Detail...</a></p>
                                 </div>
                                 <div className="row">
-                                    {loading ? (
+                                    {contact.length > 0 &&
                                         contact.map((item) => {
                                             return (
                                                 <div className="col-12" key={item.id}>
@@ -207,9 +207,10 @@ const Dashboard = () => {
                                                 </div>
                                             )
                                         })
-                                    ) : (
-                                            <div>Loading...</div>
-                                        )}
+                                    }
+                                    {contact.length === 0 &&
+                                        <div style={{ marginTop: "7%", marginBottom: "4%", marginLeft: "40%" }}>No One People Contact Us</div>
+                                    }
                                 </div>
                             </div>
                             {loading ? (

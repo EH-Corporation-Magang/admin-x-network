@@ -36,21 +36,21 @@ const AppsMenu = () => {
         for (var index = 0; index < apps.length; index++) {
             let rowItem = {}
             rowItem["no"] = index + 1
-            rowItem["icon"] = <img style={{ width: "100%", height: "20%" }} src={apps[index].icon} alt="icon" />
-            rowItem["imageproduct"] = <img style={{ width: "100%", height: "20%" }} src={apps[index].image} alt="imageproduct" />
+            rowItem["icon"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon} alt="icon" />
+            rowItem["imageproduct"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].image} alt="imageproduct" />
             rowItem["deskripsi"] = apps[index].description
             rowItem["fiture1"] = apps[index].fiture1
-            rowItem["iconfiture1"] = <img style={{ width: "100%", height: "20%" }} src={apps[index].icon_fiture1} alt="iconfiture1" />
+            rowItem["iconfiture1"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture1} alt="iconfiture1" />
             rowItem["fiture2"] = apps[index].fiture2
-            rowItem["iconfiture2"] = <img style={{ width: "100%", height: "20%" }} src={apps[index].icon_fiture2} alt="iconfiture2" />
+            rowItem["iconfiture2"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture2} alt="iconfiture2" />
             rowItem["fiture3"] = apps[index].fiture3
-            rowItem["iconfiture3"] = <img style={{ width: "100%", height: "20%" }} src={apps[index].icon_fiture3} alt="iconfiture3" />
+            rowItem["iconfiture3"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture3} alt="iconfiture3" />
             rowItem["fiture4"] = apps[index].fiture4
-            rowItem["iconfiture4"] = <img style={{ width: "100%", height: "20%" }} src={apps[index].icon_fiture4} alt="iconfiture4" />
+            rowItem["iconfiture4"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture4} alt="iconfiture4" />
             rowItem["fiture5"] = apps[index].fiture5
-            rowItem["iconfiture5"] = <img style={{ width: "100%", height: "20%" }} src={apps[index].icon_fiture5} alt="iconfiture5" />
+            rowItem["iconfiture5"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture5} alt="iconfiture5" />
             rowItem["fiture6"] = apps[index].fiture6
-            rowItem["iconfiture6"] = <img style={{ width: "100%", height: "20%" }} src={apps[index].icon_fiture6} alt="iconfiture6" />
+            rowItem["iconfiture6"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture6} alt="iconfiture6" />
             rowItem["action"] =
                 <>
                     <button style={{ marginRight: "10px", width: "45%", height: "35px" }} data-toggle="modal" data-target="#editModal" className="btn btn-primary" type="button" id={apps[index].id} ><i className="mdi mdi-table-edit" style={{ marginRight: "10px" }} />Edit</button>
@@ -280,6 +280,7 @@ const AppsMenu = () => {
                                 <MDBDataTable
                                     style={{ color: "white" }}
                                     sortable={false}
+                                    noBottomColumns={true}
                                     striped
                                     data={dataApps(tableApps)}
                                     responsive={true}

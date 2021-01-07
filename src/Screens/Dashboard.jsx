@@ -158,17 +158,16 @@ const Dashboard = () => {
                                 <div className="row">
                                     <div className="col-9">
                                         <div className="d-flex align-items-center align-self-start">
-                                            <h3 className="mb-0">$31.53</h3>
-                                            <p className="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+                                            <h3 className="text-danger mb-0">11</h3>
                                         </div>
                                     </div>
                                     <div className="col-3">
-                                        <div className="icon icon-box-success ">
-                                            <span className="mdi mdi-arrow-top-right icon-item" />
+                                        <div className="icon icon-box-danger ">
+                                            <span className="mdi mdi-radio icon-item" />
                                         </div>
                                     </div>
                                 </div>
-                                <h6 className="text-muted font-weight-normal">Expense current</h6>
+                                <h6 className="text-muted font-weight-normal">Radio Channel</h6>
                             </div>
                         </div>
                     </div>

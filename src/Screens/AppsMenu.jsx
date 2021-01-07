@@ -11,6 +11,8 @@ const AppsMenu = () => {
     const [tableApps, setTableApps] = useState('')
     const [idApps, setIdApps] = useState('')
     const [loading, setLoading] = useState('')
+
+    // this for add
     const [icon, setIcon] = useState('')
     const [image, setImage] = useState('')
     const [deskripsi, setDeskripsi] = useState('')
@@ -26,6 +28,17 @@ const AppsMenu = () => {
     const [fiture5, setFiture5] = useState('')
     const [iconfiture6, setIconFiture6] = useState('')
     const [fiture6, setFiture6] = useState('')
+
+    // this for edit
+    const [iconEdit, setIconEdit] = useState('')
+    const [imageEdit, setImageEdit] = useState('')
+    const [iconfitureEdit1, setIconFitureEdit1] = useState('')
+    const [iconfitureEdit2, setIconFitureEdit2] = useState('')
+    const [iconfitureEdit3, setIconFitureEdit3] = useState('')
+    const [iconfitureEdit4, setIconFitureEdit4] = useState('')
+    const [iconfitureEdit5, setIconFitureEdit5] = useState('')
+    const [iconfitureEdit6, setIconFitureEdit6] = useState('')
+
     const Swal = withReactContent(MySwal)
     const URL_API = `http://localhost:8000`
 
@@ -36,25 +49,25 @@ const AppsMenu = () => {
         for (var index = 0; index < apps.length; index++) {
             let rowItem = {}
             rowItem["no"] = index + 1
-            rowItem["icon"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon} alt="icon" />
-            rowItem["imageproduct"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].image} alt="imageproduct" />
+            rowItem["icon"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon} alt="tidak ada gambar" />
+            rowItem["imageproduct"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].image} alt="tidak ada gambar" />
             rowItem["deskripsi"] = apps[index].description
             rowItem["fiture1"] = apps[index].fiture1
-            rowItem["iconfiture1"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture1} alt="iconfiture1" />
+            rowItem["iconfiture1"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture1} alt="tidak ada gambar" />
             rowItem["fiture2"] = apps[index].fiture2
-            rowItem["iconfiture2"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture2} alt="iconfiture2" />
+            rowItem["iconfiture2"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture2} alt="tidak ada gambar" />
             rowItem["fiture3"] = apps[index].fiture3
-            rowItem["iconfiture3"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture3} alt="iconfiture3" />
+            rowItem["iconfiture3"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture3} alt="tidak ada gambar" />
             rowItem["fiture4"] = apps[index].fiture4
-            rowItem["iconfiture4"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture4} alt="iconfiture4" />
+            rowItem["iconfiture4"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture4} alt="tidak ada gambar" />
             rowItem["fiture5"] = apps[index].fiture5
-            rowItem["iconfiture5"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture5} alt="iconfiture5" />
+            rowItem["iconfiture5"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture5} alt="tidak ada gambar" />
             rowItem["fiture6"] = apps[index].fiture6
-            rowItem["iconfiture6"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture6} alt="iconfiture6" />
+            rowItem["iconfiture6"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture6} alt="tidak ada gambar" />
             rowItem["action"] =
                 <>
-                    <button style={{ marginRight: "10px", width: "45%", height: "35px" }} data-toggle="modal" data-target="#editModal" className="btn btn-primary" type="button" id={apps[index].id} ><i className="mdi mdi-table-edit" style={{ marginRight: "10px" }} />Edit</button>
-                    <button style={{ marginRight: "10px", width: "45%", height: "35px" }} className="btn btn-danger" type="button" id={apps[index].id} ><i className="mdi mdi-delete" style={{ marginRight: "10px" }} />Delete</button>
+                    <button onClick={event => getIdApps(event)} style={{ marginRight: "10px", width: "45%", height: "35px" }} data-toggle="modal" data-target="#editModal" className="btn btn-primary" type="button" id={apps[index].id} ><i className="mdi mdi-table-edit" style={{ marginRight: "10px" }} />Edit</button>
+                    <button onClick={event => deleteApps(event)} style={{ marginRight: "10px", width: "45%", height: "35px" }} className="btn btn-danger" type="button" id={apps[index].id} ><i className="mdi mdi-delete" style={{ marginRight: "10px" }} />Delete</button>
                 </>
             rowsData.push(rowItem)
         }
@@ -240,6 +253,137 @@ const AppsMenu = () => {
         }
     }
 
+    // Get id apps
+    const getIdApps = async e => {
+        try {
+            const data = await fetch(`${URL_API}/product/get/${e.target.id}`, {
+                method: 'GET'
+            })
+            const result = await data.json()
+            console.log(result.data)
+            setIdApps(result.data.id)
+            setDeskripsi(result.data.description)
+            setFiture1(result.data.fiture1)
+            setFiture2(result.data.fiture2)
+            setFiture3(result.data.fiture3)
+            setFiture4(result.data.fiture4)
+            setFiture5(result.data.fiture5)
+            setFiture6(result.data.fiture6)
+            console.log(icon)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    // handle submit edit apps
+    const handleEdit = async e => {
+        e.preventDefault();
+        let formData = new FormData(e.target)
+        try {
+            const fetchApi = await fetch(`${URL_API}/product/update/${idApps}`, {
+                method: 'POST',
+                body: formData
+            })
+            const create = await fetchApi.json()
+            console.log(create)
+            if (create.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Succes Edit Data Product',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                }).then(function () {
+                    setIconEdit('')
+                    setImageEdit('')
+                    setDeskripsi('')
+                    setFiture1('')
+                    setIconFitureEdit1('')
+                    setFiture2('')
+                    setIconFitureEdit2('')
+                    setFiture3('')
+                    setIconFitureEdit3('')
+                    setFiture4('')
+                    setIconFitureEdit4('')
+                    setFiture5('')
+                    setIconFitureEdit5('')
+                    setFiture6('')
+                    setIconFitureEdit6('')
+                    fetchApps().then(() => {
+                        setLoading(true)
+                    });
+                    window.$('#editModal').modal('hide')
+                    Swal.fire({
+                        title: 'Loading...',
+                        timer: 1000,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        },
+                    })
+                })
+            }
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'There is an error!',
+                html:
+                    '<ul> ' +
+                    '<li><p style="color: red;">there are columns that have not been filled</p></li> ' +
+                    '</ul > '
+            })
+            console.log(error)
+        }
+    }
+
+    // Delete apps
+    const deleteApps = (e) => {
+        const id = e.target.id
+        console.log(id)
+        Swal.fire({
+            title: 'Are you sure to delete this data?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Data Apps has been deleted.',
+                    'success'
+                ).then(async () => {
+                    try {
+                        const siswaDelete = await fetch(`${URL_API}/product/delete/${id}`, {
+                            method: 'DELETE'
+                        })
+                        await siswaDelete
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }).then(function () {
+                    fetchApps().then(() => {
+                        setLoading(true)
+                    });
+                    Swal.fire({
+                        title: 'Loading...',
+                        timer: 1000,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        },
+                    })
+                })
+            }
+        })
+    }
+
     if (loading) {
         Swal.close()
         return (
@@ -307,6 +451,7 @@ const AppsMenu = () => {
                                             <b>important notice :</b>
                                             <li>You can input the features below according to your needs</li>
                                             <li>If it is less than 6, please leave the input blank</li>
+                                            <li>Maximum letters is 255</li>
                                         </p>
                                     </div>
                                     <div className="form-group">
@@ -317,6 +462,7 @@ const AppsMenu = () => {
                                             className="form-control-file"
                                             value={icon}
                                             onChange={e => setIcon(e.target.value)}
+                                            required
                                         />
                                     </div>
                                     <div className="form-group">
@@ -327,25 +473,26 @@ const AppsMenu = () => {
                                             className="form-control-file"
                                             value={image}
                                             onChange={e => setImage(e.target.value)}
+                                            required
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="exampleFormControlInput1">Product Description</label>
-                                        <input
-                                            type="text"
+                                        <label htmlFor="exampleFormControlTextarea1">Product Description</label>
+                                        <textarea
                                             className="form-control"
-                                            placeholder="input job position"
+                                            placeholder="input product description"
                                             onChange={e => setDeskripsi(e.target.value)}
                                             value={deskripsi}
                                             name="description"
                                             style={{ color: "white" }}
+                                            required
                                         />
                                     </div>
 
                                     {/* Fiture 1 */}
                                     <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 1</label>
-                                        <input
+                                        <textarea
                                             type="text"
                                             className="form-control"
                                             placeholder="input fiture product 1"
@@ -353,6 +500,7 @@ const AppsMenu = () => {
                                             value={fiture1}
                                             name="fiture1"
                                             style={{ color: "white" }}
+                                            required
                                         />
                                     </div>
                                     <div className="form-group">
@@ -363,14 +511,14 @@ const AppsMenu = () => {
                                             className="form-control-file"
                                             value={iconfiture1}
                                             onChange={e => setIconFiture1(e.target.value)}
+                                            required
                                         />
                                     </div>
 
                                     {/* Fiture 2 */}
                                     <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 2 </label>
-                                        <input
-                                            type="text"
+                                        <textarea
                                             className="form-control"
                                             placeholder="input fiture product 2"
                                             onChange={e => setFiture2(e.target.value)}
@@ -393,8 +541,7 @@ const AppsMenu = () => {
                                     {/* Fiture 3 */}
                                     <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 3 </label>
-                                        <input
-                                            type="text"
+                                        <textarea
                                             className="form-control"
                                             placeholder="input fiture product 3"
                                             onChange={e => setFiture3(e.target.value)}
@@ -417,8 +564,7 @@ const AppsMenu = () => {
                                     {/* Fiture 4 */}
                                     <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 4 </label>
-                                        <input
-                                            type="text"
+                                        <textarea
                                             className="form-control"
                                             placeholder="input fiture product 4"
                                             onChange={e => setFiture4(e.target.value)}
@@ -441,8 +587,7 @@ const AppsMenu = () => {
                                     {/* Fiture 5 */}
                                     <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 5 </label>
-                                        <input
-                                            type="text"
+                                        <textarea
                                             className="form-control"
                                             placeholder="input fiture product 5"
                                             onChange={e => setFiture5(e.target.value)}
@@ -465,8 +610,7 @@ const AppsMenu = () => {
                                     {/* Fiture 6 */}
                                     <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 6 </label>
-                                        <input
-                                            type="text"
+                                        <textarea
                                             className="form-control"
                                             placeholder="input fiture product 6"
                                             onChange={e => setFiture6(e.target.value)}
@@ -489,6 +633,206 @@ const AppsMenu = () => {
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <button type="submit" className="btn btn-success" >Add Data</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                {/* <!-- Edit Modal --> */}
+                <div className="modal fade" id="editModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Edit Modal</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true" style={{ color: "white", marginRight: "10px" }}>×</span>
+                                </button>
+                            </div>
+                            <form onSubmit={e => handleEdit(e)}>
+                                <div className="modal-body">
+                                    <div className="warning">
+                                        <p>
+                                            <b>important notice :</b>
+                                            <li>You can input the features below according to your needs</li>
+                                            <li>If it is less than 6, please leave the input blank</li>
+                                            <li>Maximum letters is 255</li>
+                                        </p>
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlFile1">Icon</label>
+                                        <input
+                                            type="file"
+                                            name="icon"
+                                            className="form-control-file"
+                                            value={iconEdit}
+                                            onChange={e => setIconEdit(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlFile2">Image</label>
+                                        <input
+                                            type="file"
+                                            name="image"
+                                            className="form-control-file"
+                                            value={imageEdit}
+                                            onChange={e => setImageEdit(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlTextarea1">Product Description</label>
+                                        <textarea
+                                            className="form-control"
+                                            placeholder="input product description"
+                                            onChange={e => setDeskripsi(e.target.value)}
+                                            value={deskripsi}
+                                            name="description"
+                                            style={{ color: "white" }}
+                                        />
+                                    </div>
+
+                                    {/* Fiture 1 */}
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Feature Product 1</label>
+                                        <textarea
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="input fiture product 1"
+                                            onChange={e => setFiture1(e.target.value)}
+                                            value={fiture1}
+                                            name="fiture1"
+                                            style={{ color: "white" }}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlFile3">Icon Feature 1</label>
+                                        <input
+                                            type="file"
+                                            name="iconfiture1"
+                                            className="form-control-file"
+                                            value={iconfitureEdit1}
+                                            onChange={e => setIconFitureEdit1(e.target.value)}
+                                        />
+                                    </div>
+
+                                    {/* Fiture 2 */}
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Feature Product 2 </label>
+                                        <textarea
+                                            className="form-control"
+                                            placeholder="input fiture product 2"
+                                            onChange={e => setFiture2(e.target.value)}
+                                            value={fiture2}
+                                            name="fiture2"
+                                            style={{ color: "white" }}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlFile3">Icon Feature 2</label>
+                                        <input
+                                            type="file"
+                                            name="iconfiture2"
+                                            className="form-control-file"
+                                            value={iconfitureEdit2}
+                                            onChange={e => setIconFitureEdit2(e.target.value)}
+                                        />
+                                    </div>
+
+                                    {/* Fiture 3 */}
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Feature Product 3 </label>
+                                        <textarea
+                                            className="form-control"
+                                            placeholder="input fiture product 3"
+                                            onChange={e => setFiture3(e.target.value)}
+                                            value={fiture3}
+                                            name="fiture3"
+                                            style={{ color: "white" }}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlFile3">Icon Feature 3</label>
+                                        <input
+                                            type="file"
+                                            name="iconfiture3"
+                                            className="form-control-file"
+                                            value={iconfitureEdit3}
+                                            onChange={e => setIconFitureEdit3(e.target.value)}
+                                        />
+                                    </div>
+
+                                    {/* Fiture 4 */}
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Feature Product 4 </label>
+                                        <textarea
+                                            className="form-control"
+                                            placeholder="input fiture product 4"
+                                            onChange={e => setFiture4(e.target.value)}
+                                            value={fiture4}
+                                            name="fiture4"
+                                            style={{ color: "white" }}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlFile3">Icon Feature 4</label>
+                                        <input
+                                            type="file"
+                                            name="iconfiture4"
+                                            className="form-control-file"
+                                            value={iconfitureEdit4}
+                                            onChange={e => setIconFitureEdit4(e.target.value)}
+                                        />
+                                    </div>
+
+                                    {/* Fiture 5 */}
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Feature Product 5 </label>
+                                        <textarea
+                                            className="form-control"
+                                            placeholder="input fiture product 5"
+                                            onChange={e => setFiture5(e.target.value)}
+                                            value={fiture5}
+                                            name="fiture5"
+                                            style={{ color: "white" }}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlFile3">Icon Feature 5</label>
+                                        <input
+                                            type="file"
+                                            name="iconfiture5"
+                                            className="form-control-file"
+                                            value={iconfitureEdit5}
+                                            onChange={e => setIconFitureEdit5(e.target.value)}
+                                        />
+                                    </div>
+
+                                    {/* Fiture 6 */}
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Feature Product 6 </label>
+                                        <textarea
+                                            className="form-control"
+                                            placeholder="input fiture product 6"
+                                            onChange={e => setFiture6(e.target.value)}
+                                            value={fiture6}
+                                            name="fiture6"
+                                            style={{ color: "white" }}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlFile3">Icon Feature 6</label>
+                                        <input
+                                            type="file"
+                                            name="iconfiture6"
+                                            className="form-control-file"
+                                            value={iconfitureEdit6}
+                                            onChange={e => setIconFitureEdit6(e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" className="btn btn-primary" >Edit Data</button>
                                 </div>
                             </form>
                         </div>

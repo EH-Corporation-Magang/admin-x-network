@@ -399,7 +399,7 @@ const CareerMenu = () => {
                             <div className="modal-header">
                                 <h5 className="modal-title" id="exampleModalLabel">Edit Modal</h5>
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
+                                    <span aria-hidden="true" style={{ color: "white", marginRight: "10px" }}>×</span>
                                 </button>
                             </div>
                             <form onSubmit={e => handleEdit(e)}>

@@ -54,7 +54,7 @@ const Dashboard = () => {
             method: 'GET'
         })
         const contact = await datacontact.json()
-        setJumlahContact(contact.result.length)
+        setJumlahContact(contact.result)
     }
 
     const getAmountJob = async () => {

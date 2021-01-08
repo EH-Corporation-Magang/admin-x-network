@@ -2,12 +2,14 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, {
     useState,
-    useEffect
+    useEffect,
+    useRef
 } from 'react';
 import ReactPaginate from 'react-paginate';
 import CountUp from 'react-countup';
 import MySwal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { VectorMap } from 'react-jvectormap';
 
 const Dashboard = () => {
     const [contact, setContact] = useState('')
@@ -18,6 +20,7 @@ const Dashboard = () => {
     const [jumlahJob, setJumlahJob] = useState(0)
     const [jumlahProduct, setJumlahProduct] = useState(0)
     const [jumlahRadio, setJumlahRadio] = useState(0)
+    const map = useRef();
     const Swal = withReactContent(MySwal)
     const URL_API = `http://localhost:8000`
 
@@ -242,6 +245,88 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="col-12">
+                        <div className="card">
+                            <div className="card-body">
+                                <h4 className="card-title">Visitors by Countries</h4>
+                                <div className="row">
+                                    <div className="col-md-5">
+                                        <div className="table-responsive">
+                                            <table className="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <i className="flag-icon flag-icon-us" />
+                                                        </td>
+                                                        <td>USA</td>
+                                                        <td className="text-right"> 1500 </td>
+                                                        <td className="text-right font-weight-medium"> 56.35% </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <i className="flag-icon flag-icon-de" />
+                                                        </td>
+                                                        <td>Germany</td>
+                                                        <td className="text-right"> 800 </td>
+                                                        <td className="text-right font-weight-medium"> 33.25% </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <i className="flag-icon flag-icon-au" />
+                                                        </td>
+                                                        <td>Australia</td>
+                                                        <td className="text-right"> 760 </td>
+                                                        <td className="text-right font-weight-medium"> 15.45% </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <i className="flag-icon flag-icon-gb" />
+                                                        </td>
+                                                        <td>United Kingdom</td>
+                                                        <td className="text-right"> 450 </td>
+                                                        <td className="text-right font-weight-medium"> 25.00% </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <i className="flag-icon flag-icon-ro" />
+                                                        </td>
+                                                        <td>Romania</td>
+                                                        <td className="text-right"> 620 </td>
+                                                        <td className="text-right font-weight-medium"> 10.25% </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <i className="flag-icon flag-icon-br" />
+                                                        </td>
+                                                        <td>Brasil</td>
+                                                        <td className="text-right"> 230 </td>
+                                                        <td className="text-right font-weight-medium"> 75.00% </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-7">
+                                        <div style={{ width: 650, height: 300 }}>
+                                            <VectorMap
+                                                map={"indonesia"}
+                                                backgroundColor="#191C24"
+                                                ref={map}
+                                                containerStyle={{
+                                                    width: '100%',
+                                                    height: '100%'
+                                                }}
+                                                containerClassName="map"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </>
         )
     } else {

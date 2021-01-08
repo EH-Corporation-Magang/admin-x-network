@@ -126,6 +126,7 @@ const RadioMenu = () => {
                 }).then(function () {
                     setFmChannel('')
                     setKota('')
+                    setIdProvinsi('')
                     fetchRadio().then(() => {
                         setLoading(true)
                     })
@@ -196,6 +197,7 @@ const RadioMenu = () => {
                 }).then(function () {
                     setFmChannel('')
                     setKota('')
+                    setIdProvinsi('')
                     fetchRadio().then(() => {
                         setLoading(true)
                     })

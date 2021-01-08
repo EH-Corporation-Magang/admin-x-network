@@ -434,7 +434,65 @@ const RadioMenu = () => {
                             </div>
                             <form onSubmit={e => handleEdit(e)}>
                                 <div className="modal-body">
-
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">FM Channel</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            name="fm_channel"
+                                            id="exampleFormControlInput1"
+                                            placeholder="95.5 FM"
+                                            style={{ color: "white" }}
+                                            value={fm_channel}
+                                            onChange={e => setFmChannel(e.target.value)}
+                                            required
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlSelect2">Pilih Provinsi</label>
+                                        <select
+                                            className="form-control"
+                                            id="exampleFormControlSelect2"
+                                            style={{ color: "white" }}
+                                            value={idProvinsi}
+                                            onChange={e => setIdProvinsi(e.target.value)}
+                                        >
+                                            <option selected>Choose...</option>
+                                            {provinsi.length > 0 &&
+                                                provinsi.map((item) => {
+                                                    return (
+                                                        <option key={item.id} value={item.id}>{item.name}</option>
+                                                    )
+                                                })
+                                            }
+                                            {provinsi.length === 0 &&
+                                                <option disabled>Nothing in here</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlSelect3">Pilih Kota</label>
+                                        <select
+                                            className="form-control"
+                                            name="kota"
+                                            id="exampleFormControlSelect3"
+                                            style={{ color: "white" }}
+                                            value={kota}
+                                            onChange={e => setKota(e.target.value)}
+                                        >
+                                            <option selected>Choose...</option>
+                                            {kotaPilih.length > 0 &&
+                                                kotaPilih.map((item) => {
+                                                    return (
+                                                        <option key={item.id} value={item.name}>{item.name}</option>
+                                                    )
+                                                })
+                                            }
+                                            {kotaPilih.length === 0 &&
+                                                <option disabled>Nothing in here</option>
+                                            }
+                                        </select>
+                                    </div>
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

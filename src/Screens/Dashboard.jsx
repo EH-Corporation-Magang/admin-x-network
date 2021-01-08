@@ -17,6 +17,7 @@ const Dashboard = () => {
     const [jumlahContact, setJumlahContact] = useState(0)
     const [jumlahJob, setJumlahJob] = useState(0)
     const [jumlahProduct, setJumlahProduct] = useState(0)
+    const [jumlahRadio, setJumlahRadio] = useState(0)
     const Swal = withReactContent(MySwal)
     const URL_API = `http://localhost:8000`
 
@@ -73,12 +74,22 @@ const Dashboard = () => {
         setJumlahProduct(apps.result.length)
     }
 
+    const getAmountRadio = async () => {
+        const dataradio = await fetch(`${URL_API}/radio`, {
+            method: 'GET'
+        })
+        const radio = await dataradio.json()
+        setJumlahRadio(radio.result.length)
+    }
+
     useEffect(() => {
         getAmountContact()
             .then(() => {
                 getAmountJob()
             }).then(() => {
                 getAmoutApps()
+            }).then(() => {
+                getAmountRadio()
             })
     }, [])
 
@@ -159,7 +170,7 @@ const Dashboard = () => {
                                 <div className="row">
                                     <div className="col-9">
                                         <div className="d-flex align-items-center align-self-start">
-                                            <h3 className="text-danger mb-0">11</h3>
+                                            <h3 className="text-danger mb-0"><CountUp end={jumlahRadio} duration={5} /></h3>
                                         </div>
                                     </div>
                                     <div className="col-3">

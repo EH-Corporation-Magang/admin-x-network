@@ -114,7 +114,7 @@ function ProfileMenu(props) {
                 </div>
                 <div className="row">
                     <div className="col-md-6 grid-margin stretch-card">
-                        <img src={localStorage.getItem('gambaruser')} alt="foto_user" style={{ width: "73%", borderRadius: "5%", marginLeft: "14%" }} />
+                        <img src={localStorage.getItem('gambaruser')} alt="foto_user" style={{ width: "73%", borderRadius: "100%", marginLeft: "14%" }} />
                     </div>
                     <div className="col">
                         <div className="card" style={{ marginLeft: "-9%", marginRight: "13%" }}>

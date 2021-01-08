@@ -74,11 +74,12 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
-        getAmountContact().then(() => {
-            getAmountJob()
-        }).then(() => {
-            getAmoutApps()
-        })
+        getAmountContact()
+            .then(() => {
+                getAmountJob()
+            }).then(() => {
+                getAmoutApps()
+            })
     }, [])
 
 

@@ -16,6 +16,7 @@ import CareerMenu from './Screens/CareerMenu';
 import ProfileMenu from './Screens/ProfileMenu';
 import ContactMenu from './Screens/ContactMenu';
 import AppsMenu from './Screens/AppsMenu';
+import RadioMenu from './Screens/RadioMenu';
 import '@sweetalert2/theme-dark';
 
 function App() {
@@ -167,6 +168,11 @@ function App() {
                   {/* Apps */}
                   <Route path="/appsmenu">
                     <AppsMenu />
+                  </Route>
+
+                  {/* Radio Menu */}
+                  <Route path="/radiomenu">
+                    <RadioMenu />
                   </Route>
 
                 </div>

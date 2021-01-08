@@ -151,7 +151,7 @@ const ContactMenu = () => {
                 </div>
                 {/* content */}
                 <div className="row" style={{ marginBottom: "125px" }}>
-                    {/* Area Table Siswa */}
+                    {/* Area Table Contact */}
                     <div className="col-xl-12 col-lg-12">
                         <div className="card shadow mb-4">
                             {/* Card Header - Dropdown */}

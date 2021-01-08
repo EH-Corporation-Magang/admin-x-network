@@ -4,7 +4,14 @@ import Swal from 'sweetalert2/src/sweetalert2.js'
 import withReactContent from 'sweetalert2-react-content';
 
 function Navbar(props) {
+    const URL_API = `http://localhost:8000`
     const MySwal = withReactContent(Swal);
+
+    // Middleware
+    if (!localStorage.getItem('token')) {
+        window.location.href = "/";
+    }
+
     const logout = async () => {
         MySwal.fire({
             title: 'currently logged out of account...',
@@ -13,7 +20,7 @@ function Navbar(props) {
             },
         })
         try {
-            const getLogout = await fetch(`http://localhost:8000/logout`, {
+            const getLogout = await fetch(`${URL_API}/logout`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
@@ -21,7 +28,7 @@ function Navbar(props) {
             const logout = await getLogout.json()
             console.log(logout)
             if (logout.success) {
-                localStorage.removeItem('token')
+                window.localStorage.clear()
                 props.history.push('/')
                 MySwal.close()
             }

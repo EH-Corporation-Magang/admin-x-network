@@ -20,6 +20,7 @@ const Dashboard = () => {
     const [jumlahJob, setJumlahJob] = useState(0)
     const [jumlahProduct, setJumlahProduct] = useState(0)
     const [jumlahRadio, setJumlahRadio] = useState(0)
+    const [radiocoverage, setRadioCoverage] = useState('')
     const map = useRef();
     const Swal = withReactContent(MySwal)
     const URL_API = `http://localhost:8000`
@@ -53,6 +54,19 @@ const Dashboard = () => {
         fetchContact()
     }
 
+    useEffect(() => {
+        getAmountContact()
+            .then(() => {
+                getAmountJob()
+            }).then(() => {
+                getAmoutApps()
+            }).then(() => {
+                getAmountRadio()
+            }).then(() => {
+                getRadioCover()
+            })
+    }, [])
+
     const getAmountContact = async () => {
         const datacontact = await fetch(`${URL_API}/contact/count`, {
             method: 'GET'
@@ -85,16 +99,15 @@ const Dashboard = () => {
         setJumlahRadio(radio.result.length)
     }
 
-    useEffect(() => {
-        getAmountContact()
-            .then(() => {
-                getAmountJob()
-            }).then(() => {
-                getAmoutApps()
-            }).then(() => {
-                getAmountRadio()
-            })
-    }, [])
+    const getRadioCover = async () => {
+        const data = await fetch(`${URL_API}/radiocoverage`, {
+            method: 'GET'
+        })
+        const resp = await data.json()
+        console.log(resp.result)
+        setRadioCoverage(resp.result)
+    }
+
 
 
     if (loading) {
@@ -249,77 +262,50 @@ const Dashboard = () => {
                     <div className="col-12">
                         <div className="card">
                             <div className="card-body">
-                                <h4 className="card-title">Visitors by Countries</h4>
+                                <h4 className="card-title">Data Radio Coverage</h4>
                                 <div className="row">
                                     <div className="col-md-5">
                                         <div className="table-responsive">
                                             <table className="table">
                                                 <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <i className="flag-icon flag-icon-us" />
-                                                        </td>
-                                                        <td>USA</td>
-                                                        <td className="text-right"> 1500 </td>
-                                                        <td className="text-right font-weight-medium"> 56.35% </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <i className="flag-icon flag-icon-de" />
-                                                        </td>
-                                                        <td>Germany</td>
-                                                        <td className="text-right"> 800 </td>
-                                                        <td className="text-right font-weight-medium"> 33.25% </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <i className="flag-icon flag-icon-au" />
-                                                        </td>
-                                                        <td>Australia</td>
-                                                        <td className="text-right"> 760 </td>
-                                                        <td className="text-right font-weight-medium"> 15.45% </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <i className="flag-icon flag-icon-gb" />
-                                                        </td>
-                                                        <td>United Kingdom</td>
-                                                        <td className="text-right"> 450 </td>
-                                                        <td className="text-right font-weight-medium"> 25.00% </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <i className="flag-icon flag-icon-ro" />
-                                                        </td>
-                                                        <td>Romania</td>
-                                                        <td className="text-right"> 620 </td>
-                                                        <td className="text-right font-weight-medium"> 10.25% </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <i className="flag-icon flag-icon-br" />
-                                                        </td>
-                                                        <td>Brasil</td>
-                                                        <td className="text-right"> 230 </td>
-                                                        <td className="text-right font-weight-medium"> 75.00% </td>
-                                                    </tr>
+                                                    {radiocoverage.length > 0 &&
+                                                        radiocoverage.map((item) => {
+                                                            return (
+                                                                <tr key={item.id}>
+                                                                    <td>
+                                                                        <i className="flag-icon flag-icon-id" />
+                                                                    </td>
+                                                                    <td>{item.provinsi}</td>
+                                                                    <td className="text-right"> {item.kota} </td>
+                                                                </tr>
+                                                            )
+                                                        })
+                                                    }
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
+                                    {radiocoverage.length === 0 &&
+                                        <h3 style={{ textAlign: 'center', marginTop: '5%', marginBottom: '7%' }}>No data in here!</h3>
+                                    }
                                     <div className="col-md-7">
-                                        <div style={{ width: 650, height: 300 }}>
-                                            <VectorMap
-                                                map={"indonesia"}
-                                                backgroundColor="#191C24"
-                                                ref={map}
-                                                containerStyle={{
-                                                    width: '100%',
-                                                    height: '100%'
-                                                }}
-                                                containerClassName="map"
-                                            />
-                                        </div>
+                                        {radiocoverage.length > 0 &&
+                                            <div style={{ width: 650, height: 300 }}>
+                                                <VectorMap
+                                                    map={"indonesia"}
+                                                    backgroundColor="#191C24"
+                                                    ref={map}
+                                                    containerStyle={{
+                                                        width: '100%',
+                                                        height: '100%'
+                                                    }}
+                                                    containerClassName="map"
+                                                />
+                                            </div>
+                                        }
+                                        {radiocoverage.length === 0 &&
+                                            <div></div>
+                                        }
                                     </div>
                                 </div>
                             </div>

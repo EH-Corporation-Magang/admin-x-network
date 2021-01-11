@@ -7,59 +7,59 @@ import MySwal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { MDBDataTable } from 'mdbreact';
 
-const CareerMenu = () => {
-    const [tableJob, setTableJob] = useState('')
-    const [idJob, setIdJob] = useState('')
-    const [jobposition, setJobPosition] = useState('')
-    const [joblocation, setJobLocation] = useState('')
-    const [jobdescription, setJobDescription] = useState('')
-    const [joblink, setJobLink] = useState('')
+const UserMenu = () => {
+    const [tableUser, setTableUser] = useState('')
+    const [idUser, setUserId] = useState('')
+    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [gambaruser, setGambar] = useState('')
     const [loading, setLoading] = useState(false)
     const Swal = withReactContent(MySwal)
     const URL_API = `http://localhost:8000`
 
-    const fetchJob = async () => {
-        try {
-            const fetchApiJob = await fetch(`${URL_API}/job`, {
-                method: 'GET',
+    useEffect(() => {
+        fetchUser()
+            .then(() => {
+                setLoading(true)
             })
-            const jobdata = await fetchApiJob.json()
-            dataTableJob(jobdata.result)
+    }, [])
+
+    // fetch data
+    const fetchUser = async () => {
+        try {
+            const data = await fetch(`${URL_API}/user`, {
+                method: 'GET'
+            })
+            const resp = await data.json()
+            dataTableUser(resp.result)
         } catch (error) {
-            console.log('error')
+            console.log(error)
             alert(error)
         }
     }
 
-    useEffect(() => {
-        fetchJob().then(() => {
-            setLoading(true)
-        });
-    }, [])
-
     // Setting the data table
-    const dataTableJob = job => {
+    const dataTableUser = user => {
         let rowsData = []
 
-        for (var index = 0; index < job.length; index++) {
+        for (var index = 0; index < user.length; index++) {
             let rowItem = {}
             rowItem["no"] = index + 1
-            rowItem["job_position"] = job[index].job_position
-            rowItem["job_location"] = job[index].job_location
-            rowItem["job_description"] = job[index].job_description
-            rowItem["job_link"] = job[index].job_link
+            rowItem["username"] = user[index].username
+            rowItem["email"] = user[index].email
             rowItem["action"] =
                 <>
-                    <button style={{ marginRight: "10px", width: "45%", height: "35px" }} onClick={event => getIdJob(event)} data-toggle="modal" data-target="#editModal" className="btn btn-primary" type="button" id={job[index].id} ><i className="mdi mdi-table-edit" style={{ marginRight: "10px" }} />Edit</button>
-                    <button onClick={e => deleteJob(e)} style={{ marginRight: "10px", width: "45%", height: "35px" }} className="btn btn-danger" type="button" id={job[index].id} ><i className="mdi mdi-delete" style={{ marginRight: "10px" }} />Delete</button>
+                    <button onClick={event => getIdUser(event)} style={{ marginRight: "10px", width: "45%", height: "35px" }} data-toggle="modal" data-target="#editModal" className="btn btn-primary" type="button" id={user[index].id} ><i className="mdi mdi-table-edit" style={{ marginRight: "10px" }} />Edit</button>
+                    <button onClick={event => deleteUser(event)} style={{ marginRight: "10px", width: "45%", height: "35px" }} className="btn btn-danger" type="button" id={user[index].id} ><i className="mdi mdi-delete" style={{ marginRight: "10px" }} />Delete</button>
                 </>
             rowsData.push(rowItem)
         }
-        setTableJob(rowsData)
+        setTableUser(rowsData)
     }
 
-    // Data job
-    const dataJob = (data) => {
+    // Data user
+    const dataUser = (data) => {
         return {
             columns: [
                 {
@@ -68,23 +68,13 @@ const CareerMenu = () => {
                     sort: 'asc'
                 },
                 {
-                    label: 'Job Position',
-                    field: 'job_position',
+                    label: 'Username',
+                    field: 'username',
                     sort: 'asc'
                 },
                 {
-                    label: 'Job Location',
-                    field: 'job_location',
-                    sort: 'asc'
-                },
-                {
-                    label: 'Job Description',
-                    field: 'job_description',
-                    sort: 'asc'
-                },
-                {
-                    label: 'Job Link',
-                    field: 'job_link',
+                    label: 'Email',
+                    field: 'email',
                     sort: 'asc'
                 },
                 {
@@ -97,98 +87,17 @@ const CareerMenu = () => {
         }
     }
 
-    // handle submit add job
     const handleSubmit = async e => {
-        e.preventDefault();
+        e.preventDefault()
+        let formData = new FormData(e.target)
         try {
-            const fetchApi = await fetch(`${URL_API}/job/store`, {
+            const data = await fetch(`${URL_API}/user/store`, {
                 method: 'POST',
-                body: JSON.stringify({
-                    jobposition,
-                    jobdescription,
-                    joblocation,
-                    joblink
-                }),
-                headers: { 'Content-Type': 'application/json' }
+                body: formData
             })
-            const create = await fetchApi.json()
-            console.log(create)
-            if (create.success) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Succes Add Data Job',
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 1000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                }).then(function () {
-                    setJobPosition('')
-                    setJobLocation('')
-                    setJobDescription('')
-                    setJobLink('')
-                    fetchJob().then(() => {
-                        setLoading(true)
-                    });
-                    window.$('#addModal').modal('hide')
-                    Swal.fire({
-                        title: 'Loading...',
-                        timer: 1000,
-                        didOpen: () => {
-                            Swal.showLoading()
-                        },
-                    })
-                })
-            }
-        } catch (error) {
-            Swal.fire({
-                icon: 'error',
-                title: 'There is an error!',
-                html:
-                    '<ul> ' +
-                    '<li><p style="color: red;">there are columns that have not been filled</p></li> ' +
-                    '</ul > '
-            })
-            console.log(error)
-        }
-    }
-
-    // Get id job
-    const getIdJob = async e => {
-        try {
-            const data = await fetch(`${URL_API}/job/get/${e.target.id}`, {
-                method: 'GET'
-            })
-            const result = await data.json()
-            setIdJob(result.data.id)
-            setJobPosition(result.data.job_position)
-            setJobLocation(result.data.job_location)
-            setJobDescription(result.data.job_description)
-            setJobLink(result.data.job_link)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    const handleEdit = async e => {
-        e.preventDefault();
-        try {
-            const updateJob = await fetch(`${URL_API}/job/update/${idJob}`, {
-                method: 'PUT',
-                body: JSON.stringify({
-                    jobposition,
-                    jobdescription,
-                    joblocation,
-                    joblink
-                }),
-                headers: { 'Content-Type': 'application/json' },
-            })
-            const update = await updateJob.json()
-            if (update.success) {
+            const resp = await data.json()
+            console.log(resp)
+            if (resp.success) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Succes Edit Data Job',
@@ -202,13 +111,92 @@ const CareerMenu = () => {
                         toast.addEventListener('mouseleave', Swal.resumeTimer)
                     }
                 }).then(function () {
-                    setJobPosition('')
-                    setJobLocation('')
-                    setJobDescription('')
-                    setJobLink('')
-                    fetchJob().then(() => {
-                        setLoading(true)
-                    });
+                    setUsername('')
+                    setEmail('')
+                    setPassword('')
+                    setGambar('')
+                    fetchUser()
+                        .then(() => {
+                            setLoading(true)
+                        })
+                    window.$('#addModal').modal('hide')
+                    Swal.fire({
+                        title: 'Loading...',
+                        timer: 1000,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        },
+                    })
+                })
+            }
+
+            if (!resp.success) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'There is an error!',
+                    html:
+                        '<ul> ' +
+                        '<li><p style="color: red;">there are columns that have not been filled</p></li> ' +
+                        '</ul > '
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            alert(error)
+        }
+    }
+
+    const getIdUser = async e => {
+        try {
+            const data = await fetch(`${URL_API}/user/get/${e.target.id}`, {
+                method: 'GET'
+            })
+            const resp = await data.json()
+            console.log(resp.data)
+            setUserId(resp.data.id)
+            setUsername(resp.data.username)
+            setEmail(resp.data.email)
+        } catch (error) {
+            console.log(error)
+            alert(error)
+        }
+    }
+
+    const handleEdit = async e => {
+        e.preventDefault()
+        try {
+            const data = await fetch(`${URL_API}/userupdate/${idUser}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    username,
+                    email,
+                    password
+                }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            const resp = await data.json()
+            console.log(resp)
+            if (resp.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Succes Edit Data Job',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                }).then(function () {
+                    setUsername('')
+                    setEmail('')
+                    setPassword('')
+                    fetchUser()
+                        .then(() => {
+                            setLoading(true)
+                        })
                     window.$('#editModal').modal('hide')
                     Swal.fire({
                         title: 'Loading...',
@@ -219,13 +207,24 @@ const CareerMenu = () => {
                     })
                 })
             }
+            if (!resp.success) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'There is an error!',
+                    html:
+                        '<ul> ' +
+                        '<li><p style="color: red;">there are columns that have not been filled</p></li> ' +
+                        '</ul > '
+                })
+            }
         } catch (error) {
             console.log(error)
+            alert(error)
         }
     }
 
-    // Delete job
-    const deleteJob = (e) => {
+    // Delete user
+    const deleteUser = (e) => {
         const id = e.target.id
         console.log(id)
         Swal.fire({
@@ -240,21 +239,22 @@ const CareerMenu = () => {
             if (result.isConfirmed) {
                 Swal.fire(
                     'Deleted!',
-                    'Data job has been deleted.',
+                    'Data user has been deleted.',
                     'success'
                 ).then(async () => {
                     try {
-                        const careerDelete = await fetch(`${URL_API}/job/delete/${id}`, {
+                        const userDelete = await fetch(`${URL_API}/user/delete/${id}`, {
                             method: 'DELETE'
                         })
-                        await careerDelete
+                        await userDelete
                     } catch (error) {
                         console.log(error)
                     }
                 }).then(function () {
-                    fetchJob().then(() => {
-                        setLoading(true)
-                    });
+                    fetchUser()
+                        .then(() => {
+                            setLoading(true)
+                        })
                     Swal.fire({
                         title: 'Loading...',
                         timer: 1000,
@@ -273,11 +273,11 @@ const CareerMenu = () => {
             <>
                 {/* header */}
                 <div className="page-header">
-                    <h3 className="page-title"> Career Menu </h3>
+                    <h3 className="page-title"> User Menu </h3>
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
-                            <li className="breadcrumb-item active" aria-current="page">Career Menu</li>
+                            <li className="breadcrumb-item active" aria-current="page">User Menu</li>
                         </ol>
                     </nav>
                 </div>
@@ -288,7 +288,7 @@ const CareerMenu = () => {
                         <div className="card shadow mb-4">
                             {/* Card Header - Dropdown */}
                             <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 className="m-0 font-weight-bold text-primary">Data Job Hiring</h6>
+                                <h6 className="m-0 font-weight-bold text-primary">Data User</h6>
                                 <div className="dropdown no-arrow">
                                     <a className="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i className="fas fa-ellipsis-v fa-sm fa-fw text-gray-400" />
@@ -297,8 +297,8 @@ const CareerMenu = () => {
                                         <div className="dropdown-header">Action:</div>
                                         <a className="dropdown-item" href="#" data-toggle="modal" data-target="#addModal">
                                             <i className="mdi mdi-plus" style={{ marginRight: "10px", color: "green" }} />
-                                            Add Modal
-                                            </a>
+                                                Add Modal
+                                                </a>
                                     </div>
                                 </div>
                             </div>
@@ -309,7 +309,7 @@ const CareerMenu = () => {
                                     sortable={false}
                                     striped
                                     noBottomColumns={true}
-                                    data={dataJob(tableJob)}
+                                    data={dataUser(tableUser)}
                                     responsive={true}
                                 />
                             </div>
@@ -330,55 +330,61 @@ const CareerMenu = () => {
                             <form onSubmit={e => handleSubmit(e)}>
                                 <div className="modal-body">
                                     <div className="form-group">
-                                        <label htmlFor="exampleFormControlInput1">Job Position</label>
+                                        <label htmlFor="username">Username</label>
                                         <input
+                                            style={{
+                                                borderRadius: "5px",
+                                                padding: "10px"
+                                            }}
                                             type="text"
                                             className="form-control"
-                                            id="exampleFormControlInput1"
-                                            placeholder="input job position"
-                                            onChange={e => setJobPosition(e.target.value)}
-                                            value={jobposition}
-                                            name="jobposition"
-                                            style={{ color: "white" }}
+                                            name="username"
+                                            placeholder="enter your username"
+                                            value={username}
+                                            onChange={e => setUsername(e.target.value)}
+                                            required
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="exampleFormControlInput2">Job Location</label>
+                                        <label htmlFor="email">Email</label>
                                         <input
-                                            type="text"
+                                            style={{
+                                                borderRadius: "5px",
+                                                padding: "10px"
+                                            }}
+                                            type="email"
+                                            name="email"
                                             className="form-control"
-                                            id="exampleFormControlInput2"
-                                            placeholder="input job location"
-                                            onChange={e => setJobLocation(e.target.value)}
-                                            value={joblocation}
-                                            name="joblocation"
-                                            style={{ color: "white" }}
+                                            placeholder="email@example.com"
+                                            value={email}
+                                            onChange={e => setEmail(e.target.value)}
+                                            required
                                         />
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="exampleFormControlInput3">Job Description</label>
-                                        <input
-                                            type="text"
+                                    <div className="form-group mb-4">
+                                        <label htmlFor="password">Password</label>
+                                        <input style={{
+                                            borderRadius: "5px",
+                                            padding: "10px"
+                                        }}
+                                            type="password"
+                                            name="password"
                                             className="form-control"
-                                            id="exampleFormControlInput3"
-                                            placeholder="input job description"
-                                            onChange={e => setJobDescription(e.target.value)}
-                                            value={jobdescription}
-                                            name="jobdescription"
-                                            style={{ color: "white" }}
+                                            placeholder="enter your passsword"
+                                            value={password}
+                                            onChange={e => setPassword(e.target.value)}
+                                            required
                                         />
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="exampleFormControlInput4">Job Link</label>
+                                    <div className="form-group mb-4">
+                                        <label htmlFor="exampleFormControlFile1">Image User</label>
                                         <input
-                                            type="text"
-                                            className="form-control"
-                                            id="exampleFormControlInput4"
-                                            placeholder="input job link"
-                                            onChange={e => setJobLink(e.target.value)}
-                                            value={joblink}
-                                            name="joblink"
-                                            style={{ color: "white" }}
+                                            type="file"
+                                            name="gambar_user"
+                                            className="form-control-file"
+                                            id="exampleFormControlFile1"
+                                            value={gambaruser}
+                                            onChange={e => setGambar(e.target.value)}
                                         />
                                     </div>
                                 </div>
@@ -404,55 +410,47 @@ const CareerMenu = () => {
                             <form onSubmit={e => handleEdit(e)}>
                                 <div className="modal-body">
                                     <div className="form-group">
-                                        <label htmlFor="exampleFormControlInput1">Job Position</label>
+                                        <label htmlFor="username">Username</label>
                                         <input
+                                            style={{
+                                                borderRadius: "5px",
+                                                padding: "10px"
+                                            }}
                                             type="text"
                                             className="form-control"
-                                            id="exampleFormControlInput1"
-                                            placeholder="input job position"
-                                            onChange={e => setJobPosition(e.target.value)}
-                                            value={jobposition}
-                                            name="jobposition"
-                                            style={{ color: "white" }}
+                                            name="username"
+                                            placeholder="enter your username"
+                                            value={username}
+                                            onChange={e => setUsername(e.target.value)}
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="exampleFormControlInput2">Job Location</label>
+                                        <label htmlFor="username">Email</label>
                                         <input
-                                            type="text"
+                                            style={{
+                                                borderRadius: "5px",
+                                                padding: "10px"
+                                            }}
+                                            type="email"
                                             className="form-control"
-                                            id="exampleFormControlInput2"
-                                            placeholder="input job location"
-                                            onChange={e => setJobLocation(e.target.value)}
-                                            value={joblocation}
-                                            name="joblocation"
-                                            style={{ color: "white" }}
+                                            name="email"
+                                            placeholder="enter your email"
+                                            value={email}
+                                            onChange={e => setEmail(e.target.value)}
                                         />
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="exampleFormControlInput3">Job Description</label>
-                                        <input
-                                            type="text"
+                                    <div className="form-group mb-4">
+                                        <label htmlFor="password">Password</label>
+                                        <input style={{
+                                            borderRadius: "5px",
+                                            padding: "10px"
+                                        }}
+                                            type="password"
+                                            name="password"
                                             className="form-control"
-                                            id="exampleFormControlInput3"
-                                            placeholder="input job description"
-                                            onChange={e => setJobDescription(e.target.value)}
-                                            value={jobdescription}
-                                            name="jobdescription"
-                                            style={{ color: "white" }}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="exampleFormControlInput4">Job Link</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            id="exampleFormControlInput4"
-                                            placeholder="input job link"
-                                            onChange={e => setJobLink(e.target.value)}
-                                            value={joblink}
-                                            name="joblink"
-                                            style={{ color: "white" }}
+                                            placeholder="enter your passsword"
+                                            value={password}
+                                            onChange={e => setPassword(e.target.value)}
                                         />
                                     </div>
                                 </div>
@@ -479,4 +477,4 @@ const CareerMenu = () => {
     )
 }
 
-export default CareerMenu
+export default UserMenu

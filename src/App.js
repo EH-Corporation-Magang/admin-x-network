@@ -17,6 +17,7 @@ import ProfileMenu from './Screens/ProfileMenu';
 import ContactMenu from './Screens/ContactMenu';
 import AppsMenu from './Screens/AppsMenu';
 import RadioMenu from './Screens/RadioMenu';
+import UserMenu from './Screens/UserMenu';
 import '@sweetalert2/theme-dark';
 
 function App() {
@@ -90,19 +91,19 @@ function App() {
                   </a>
                 </li>
                 <li className="nav-item menu-items">
-                  <a className="nav-link" href="messagemenu">
-                    <span className="menu-icon">
-                      <i className="mdi mdi-message-text" />
-                    </span>
-                    <span className="menu-title">Messaging Menu</span>
-                  </a>
-                </li>
-                <li className="nav-item menu-items">
                   <a className="nav-link" href="appsmenu">
                     <span className="menu-icon">
                       <i className="mdi mdi-apps" />
                     </span>
                     <span className="menu-title">Product Menu</span>
+                  </a>
+                </li>
+                <li className="nav-item menu-items">
+                  <a className="nav-link" href="usermenu">
+                    <span className="menu-icon">
+                      <i className="mdi mdi-account" />
+                    </span>
+                    <span className="menu-title">User Menu</span>
                   </a>
                 </li>
                 <li className="nav-item nav-category">
@@ -160,12 +161,12 @@ function App() {
                     )}
                   />
 
-                  {/* Contact */}
+                  {/* Contact Menu*/}
                   <Route path="/contactmenu">
                     <ContactMenu />
                   </Route>
 
-                  {/* Apps */}
+                  {/* Apps Menu */}
                   <Route path="/appsmenu">
                     <AppsMenu />
                   </Route>
@@ -173,6 +174,11 @@ function App() {
                   {/* Radio Menu */}
                   <Route path="/radiomenu">
                     <RadioMenu />
+                  </Route>
+
+                  {/* User Menu */}
+                  <Route path="/usermenu">
+                    <UserMenu />
                   </Route>
 
                 </div>

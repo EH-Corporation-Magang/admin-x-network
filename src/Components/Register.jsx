@@ -17,7 +17,7 @@ function Register(props) {
         e.preventDefault()
         let formData = new FormData(e.target)
         try {
-            const register = await fetch(`${URL_API}/register`, {
+            const register = await fetch(`${URL_API}/store`, {
                 method: 'POST',
                 body: formData
             })

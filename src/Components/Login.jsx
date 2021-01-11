@@ -112,7 +112,6 @@ function Login(props) {
                                     Login
                                 </button>
                             </form>
-                            <p style={{ marginTop: "15%" }} className="login-wrapper-footer-text">Don't have an account? <a href="/register" className="text-reset">Register here</a></p>
                         </div>
                     </div>
                     <div className="col-sm-6 px-0 d-none d-sm-block">

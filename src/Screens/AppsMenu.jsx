@@ -16,28 +16,22 @@ const AppsMenu = () => {
     const [icon, setIcon] = useState('')
     const [image, setImage] = useState('')
     const [deskripsi, setDeskripsi] = useState('')
-    const [iconfiture1, setIconFiture1] = useState('')
+    const [titlefiture1, setTitleFiture1] = useState('')
     const [fiture1, setFiture1] = useState('')
-    const [iconfiture2, setIconFiture2] = useState('')
+    const [titlefiture2, setTitleFiture2] = useState('')
     const [fiture2, setFiture2] = useState('')
-    const [iconfiture3, setIconFiture3] = useState('')
+    const [titlefiture3, setTitleFiture3] = useState('')
     const [fiture3, setFiture3] = useState('')
-    const [iconfiture4, setIconFiture4] = useState('')
+    const [titlefiture4, setTitleFiture4] = useState('')
     const [fiture4, setFiture4] = useState('')
-    const [iconfiture5, setIconFiture5] = useState('')
+    const [titlefiture5, setTitleFiture5] = useState('')
     const [fiture5, setFiture5] = useState('')
-    const [iconfiture6, setIconFiture6] = useState('')
+    const [titlefiture6, setTitleFiture6] = useState('')
     const [fiture6, setFiture6] = useState('')
 
     // this for edit
     const [iconEdit, setIconEdit] = useState('')
     const [imageEdit, setImageEdit] = useState('')
-    const [iconfitureEdit1, setIconFitureEdit1] = useState('')
-    const [iconfitureEdit2, setIconFitureEdit2] = useState('')
-    const [iconfitureEdit3, setIconFitureEdit3] = useState('')
-    const [iconfitureEdit4, setIconFitureEdit4] = useState('')
-    const [iconfitureEdit5, setIconFitureEdit5] = useState('')
-    const [iconfitureEdit6, setIconFitureEdit6] = useState('')
 
     const Swal = withReactContent(MySwal)
     const URL_API = `http://localhost:8000`
@@ -53,17 +47,17 @@ const AppsMenu = () => {
             rowItem["imageproduct"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].image} alt="tidak ada gambar" />
             rowItem["deskripsi"] = apps[index].description
             rowItem["fiture1"] = apps[index].fiture1
-            rowItem["iconfiture1"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture1} alt="tidak ada gambar" />
+            rowItem["titlefiture1"] = apps[index].titlefiture1
             rowItem["fiture2"] = apps[index].fiture2
-            rowItem["iconfiture2"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture2} alt="tidak ada gambar" />
+            rowItem["titlefiture2"] = apps[index].titlefiture2
             rowItem["fiture3"] = apps[index].fiture3
-            rowItem["iconfiture3"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture3} alt="tidak ada gambar" />
+            rowItem["titlefiture3"] = apps[index].titlefiture3
             rowItem["fiture4"] = apps[index].fiture4
-            rowItem["iconfiture4"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture4} alt="tidak ada gambar" />
+            rowItem["titlefiture4"] = apps[index].titlefiture4
             rowItem["fiture5"] = apps[index].fiture5
-            rowItem["iconfiture5"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture5} alt="tidak ada gambar" />
+            rowItem["titlefiture5"] = apps[index].titlefiture5
             rowItem["fiture6"] = apps[index].fiture6
-            rowItem["iconfiture6"] = <img style={{ width: "100px", height: "100px", borderRadius: "0px" }} src={apps[index].icon_fiture6} alt="tidak ada gambar" />
+            rowItem["titlefiture6"] = apps[index].titlefiture6
             rowItem["action"] =
                 <>
                     <button onClick={event => getIdApps(event)} style={{ marginRight: "10px", width: "45%", height: "35px" }} data-toggle="modal" data-target="#editModal" className="btn btn-primary" type="button" id={apps[index].id} ><i className="mdi mdi-table-edit" style={{ marginRight: "10px" }} />Edit</button>
@@ -123,8 +117,8 @@ const AppsMenu = () => {
                     sort: 'asc'
                 },
                 {
-                    label: 'Icon Fiture 1',
-                    field: 'iconfiture1',
+                    label: 'Title Fiture 1',
+                    field: 'titlefiture1',
                     sort: 'asc'
                 },
                 {
@@ -133,8 +127,8 @@ const AppsMenu = () => {
                     sort: 'asc'
                 },
                 {
-                    label: 'Icon Fiture 2',
-                    field: 'iconfiture2',
+                    label: 'Title Fiture 2',
+                    field: 'titlefiture2',
                     sort: 'asc'
                 },
                 {
@@ -143,8 +137,8 @@ const AppsMenu = () => {
                     sort: 'asc'
                 },
                 {
-                    label: 'Icon Fiture 3',
-                    field: 'iconfiture3',
+                    label: 'Title Fiture 3',
+                    field: 'titlefiture3',
                     sort: 'asc'
                 },
                 {
@@ -153,8 +147,8 @@ const AppsMenu = () => {
                     sort: 'asc'
                 },
                 {
-                    label: 'Icon Fiture 4',
-                    field: 'iconfiture4',
+                    label: 'Title Fiture 4',
+                    field: 'titlefiture4',
                     sort: 'asc'
                 },
                 {
@@ -163,8 +157,8 @@ const AppsMenu = () => {
                     sort: 'asc'
                 },
                 {
-                    label: 'Icon Fiture 5',
-                    field: 'iconfiture5',
+                    label: 'Title Fiture 5',
+                    field: 'titlefiture5',
                     sort: 'asc'
                 },
                 {
@@ -173,8 +167,8 @@ const AppsMenu = () => {
                     sort: 'asc'
                 },
                 {
-                    label: 'Icon Fiture 6',
-                    field: 'iconfiture6',
+                    label: 'Title Fiture 6',
+                    field: 'titlefiture6',
                     sort: 'asc'
                 },
                 {
@@ -216,17 +210,17 @@ const AppsMenu = () => {
                     setImage('')
                     setDeskripsi('')
                     setFiture1('')
-                    setIconFiture1('')
+                    setTitleFiture1('')
                     setFiture2('')
-                    setIconFiture2('')
+                    setTitleFiture2('')
                     setFiture3('')
-                    setIconFiture3('')
+                    setTitleFiture3('')
                     setFiture4('')
-                    setIconFiture4('')
+                    setTitleFiture4('')
                     setFiture5('')
-                    setIconFiture5('')
+                    setTitleFiture5('')
                     setFiture6('')
-                    setIconFiture6('')
+                    setTitleFiture6('')
                     fetchApps().then(() => {
                         setLoading(true)
                     });
@@ -269,6 +263,12 @@ const AppsMenu = () => {
             setFiture4(result.data.fiture4)
             setFiture5(result.data.fiture5)
             setFiture6(result.data.fiture6)
+            setTitleFiture1(result.data.titlefiture1)
+            setTitleFiture2(result.data.titlefiture2)
+            setTitleFiture3(result.data.titlefiture3)
+            setTitleFiture4(result.data.titlefiture4)
+            setTitleFiture5(result.data.titlefiture5)
+            setTitleFiture6(result.data.titlefiture6)
             console.log(icon)
         } catch (error) {
             console.log(error)
@@ -304,17 +304,17 @@ const AppsMenu = () => {
                     setImageEdit('')
                     setDeskripsi('')
                     setFiture1('')
-                    setIconFitureEdit1('')
+                    setTitleFiture1('')
                     setFiture2('')
-                    setIconFitureEdit2('')
+                    setTitleFiture2('')
                     setFiture3('')
-                    setIconFitureEdit3('')
+                    setTitleFiture3('')
                     setFiture4('')
-                    setIconFitureEdit4('')
+                    setTitleFiture4('')
                     setFiture5('')
-                    setIconFitureEdit5('')
+                    setTitleFiture5('')
                     setFiture6('')
-                    setIconFitureEdit6('')
+                    setTitleFiture6('')
                     fetchApps().then(() => {
                         setLoading(true)
                     });
@@ -491,6 +491,19 @@ const AppsMenu = () => {
 
                                     {/* Fiture 1 */}
                                     <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Title Feature Product 1</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="input title fiture product 1"
+                                            onChange={e => setTitleFiture1(e.target.value)}
+                                            value={titlefiture1}
+                                            name="titlefiture1"
+                                            style={{ color: "white" }}
+                                            required
+                                        />
+                                    </div>
+                                    <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 1</label>
                                         <textarea
                                             type="text"
@@ -503,19 +516,20 @@ const AppsMenu = () => {
                                             required
                                         />
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="exampleFormControlFile3">Icon Feature 1</label>
-                                        <input
-                                            type="file"
-                                            name="iconfiture1"
-                                            className="form-control-file"
-                                            value={iconfiture1}
-                                            onChange={e => setIconFiture1(e.target.value)}
-                                            required
-                                        />
-                                    </div>
 
                                     {/* Fiture 2 */}
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Title Feature Product 2</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="input title fiture product 2"
+                                            onChange={e => setTitleFiture2(e.target.value)}
+                                            value={titlefiture2}
+                                            name="titlefiture2"
+                                            style={{ color: "white" }}
+                                        />
+                                    </div>
                                     <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 2 </label>
                                         <textarea
@@ -527,18 +541,20 @@ const AppsMenu = () => {
                                             style={{ color: "white" }}
                                         />
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="exampleFormControlFile3">Icon Feature 2</label>
-                                        <input
-                                            type="file"
-                                            name="iconfiture2"
-                                            className="form-control-file"
-                                            value={iconfiture2}
-                                            onChange={e => setIconFiture2(e.target.value)}
-                                        />
-                                    </div>
 
                                     {/* Fiture 3 */}
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Title Feature Product 3</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="input title fiture product 3"
+                                            onChange={e => setTitleFiture3(e.target.value)}
+                                            value={titlefiture3}
+                                            name="titlefiture3"
+                                            style={{ color: "white" }}
+                                        />
+                                    </div>
                                     <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 3 </label>
                                         <textarea
@@ -550,18 +566,20 @@ const AppsMenu = () => {
                                             style={{ color: "white" }}
                                         />
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="exampleFormControlFile3">Icon Feature 3</label>
-                                        <input
-                                            type="file"
-                                            name="iconfiture3"
-                                            className="form-control-file"
-                                            value={iconfiture3}
-                                            onChange={e => setIconFiture3(e.target.value)}
-                                        />
-                                    </div>
 
                                     {/* Fiture 4 */}
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Title Feature Product 4</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="input title fiture product 4"
+                                            onChange={e => setTitleFiture4(e.target.value)}
+                                            value={titlefiture4}
+                                            name="titlefiture4"
+                                            style={{ color: "white" }}
+                                        />
+                                    </div>
                                     <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 4 </label>
                                         <textarea
@@ -573,18 +591,20 @@ const AppsMenu = () => {
                                             style={{ color: "white" }}
                                         />
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="exampleFormControlFile3">Icon Feature 4</label>
-                                        <input
-                                            type="file"
-                                            name="iconfiture4"
-                                            className="form-control-file"
-                                            value={iconfiture4}
-                                            onChange={e => setIconFiture4(e.target.value)}
-                                        />
-                                    </div>
 
                                     {/* Fiture 5 */}
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Title Feature Product 5</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="input title fiture product 5"
+                                            onChange={e => setTitleFiture5(e.target.value)}
+                                            value={titlefiture5}
+                                            name="titlefiture5"
+                                            style={{ color: "white" }}
+                                        />
+                                    </div>
                                     <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 5 </label>
                                         <textarea
@@ -596,18 +616,20 @@ const AppsMenu = () => {
                                             style={{ color: "white" }}
                                         />
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="exampleFormControlFile3">Icon Feature 5</label>
-                                        <input
-                                            type="file"
-                                            name="iconfiture5"
-                                            className="form-control-file"
-                                            value={iconfiture5}
-                                            onChange={e => setIconFiture5(e.target.value)}
-                                        />
-                                    </div>
 
                                     {/* Fiture 6 */}
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Title Feature Product 6</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="input title fiture product 6"
+                                            onChange={e => setTitleFiture6(e.target.value)}
+                                            value={titlefiture6}
+                                            name="titlefiture6"
+                                            style={{ color: "white" }}
+                                        />
+                                    </div>
                                     <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 6 </label>
                                         <textarea
@@ -619,16 +641,7 @@ const AppsMenu = () => {
                                             style={{ color: "white" }}
                                         />
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="exampleFormControlFile3">Icon Feature 6</label>
-                                        <input
-                                            type="file"
-                                            name="iconfiture6"
-                                            className="form-control-file"
-                                            value={iconfiture6}
-                                            onChange={e => setIconFiture6(e.target.value)}
-                                        />
-                                    </div>
+
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -693,6 +706,19 @@ const AppsMenu = () => {
 
                                     {/* Fiture 1 */}
                                     <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Title Feature Product 1</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="input title fiture product 1"
+                                            onChange={e => setTitleFiture1(e.target.value)}
+                                            value={titlefiture1}
+                                            name="titlefiture1"
+                                            style={{ color: "white" }}
+                                            required
+                                        />
+                                    </div>
+                                    <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 1</label>
                                         <textarea
                                             type="text"
@@ -702,20 +728,23 @@ const AppsMenu = () => {
                                             value={fiture1}
                                             name="fiture1"
                                             style={{ color: "white" }}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="exampleFormControlFile3">Icon Feature 1</label>
-                                        <input
-                                            type="file"
-                                            name="iconfiture1"
-                                            className="form-control-file"
-                                            value={iconfitureEdit1}
-                                            onChange={e => setIconFitureEdit1(e.target.value)}
+                                            required
                                         />
                                     </div>
 
                                     {/* Fiture 2 */}
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Title Feature Product 2</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="input title fiture product 2"
+                                            onChange={e => setTitleFiture2(e.target.value)}
+                                            value={titlefiture2}
+                                            name="titlefiture2"
+                                            style={{ color: "white" }}
+                                        />
+                                    </div>
                                     <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 2 </label>
                                         <textarea
@@ -727,18 +756,20 @@ const AppsMenu = () => {
                                             style={{ color: "white" }}
                                         />
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="exampleFormControlFile3">Icon Feature 2</label>
-                                        <input
-                                            type="file"
-                                            name="iconfiture2"
-                                            className="form-control-file"
-                                            value={iconfitureEdit2}
-                                            onChange={e => setIconFitureEdit2(e.target.value)}
-                                        />
-                                    </div>
 
                                     {/* Fiture 3 */}
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Title Feature Product 3</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="input title fiture product 3"
+                                            onChange={e => setTitleFiture3(e.target.value)}
+                                            value={titlefiture3}
+                                            name="titlefiture3"
+                                            style={{ color: "white" }}
+                                        />
+                                    </div>
                                     <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 3 </label>
                                         <textarea
@@ -750,18 +781,20 @@ const AppsMenu = () => {
                                             style={{ color: "white" }}
                                         />
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="exampleFormControlFile3">Icon Feature 3</label>
-                                        <input
-                                            type="file"
-                                            name="iconfiture3"
-                                            className="form-control-file"
-                                            value={iconfitureEdit3}
-                                            onChange={e => setIconFitureEdit3(e.target.value)}
-                                        />
-                                    </div>
 
                                     {/* Fiture 4 */}
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Title Feature Product 4</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="input title fiture product 4"
+                                            onChange={e => setTitleFiture4(e.target.value)}
+                                            value={titlefiture4}
+                                            name="titlefiture4"
+                                            style={{ color: "white" }}
+                                        />
+                                    </div>
                                     <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 4 </label>
                                         <textarea
@@ -773,18 +806,20 @@ const AppsMenu = () => {
                                             style={{ color: "white" }}
                                         />
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="exampleFormControlFile3">Icon Feature 4</label>
-                                        <input
-                                            type="file"
-                                            name="iconfiture4"
-                                            className="form-control-file"
-                                            value={iconfitureEdit4}
-                                            onChange={e => setIconFitureEdit4(e.target.value)}
-                                        />
-                                    </div>
 
                                     {/* Fiture 5 */}
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Title Feature Product 5</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="input title fiture product 5"
+                                            onChange={e => setTitleFiture5(e.target.value)}
+                                            value={titlefiture5}
+                                            name="titlefiture5"
+                                            style={{ color: "white" }}
+                                        />
+                                    </div>
                                     <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 5 </label>
                                         <textarea
@@ -796,18 +831,20 @@ const AppsMenu = () => {
                                             style={{ color: "white" }}
                                         />
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="exampleFormControlFile3">Icon Feature 5</label>
-                                        <input
-                                            type="file"
-                                            name="iconfiture5"
-                                            className="form-control-file"
-                                            value={iconfitureEdit5}
-                                            onChange={e => setIconFitureEdit5(e.target.value)}
-                                        />
-                                    </div>
 
                                     {/* Fiture 6 */}
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlInput1">Title Feature Product 6</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="input title fiture product 6"
+                                            onChange={e => setTitleFiture6(e.target.value)}
+                                            value={titlefiture6}
+                                            name="titlefiture6"
+                                            style={{ color: "white" }}
+                                        />
+                                    </div>
                                     <div className="form-group">
                                         <label htmlFor="exampleFormControlInput1">Feature Product 6 </label>
                                         <textarea
@@ -819,16 +856,7 @@ const AppsMenu = () => {
                                             style={{ color: "white" }}
                                         />
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="exampleFormControlFile3">Icon Feature 6</label>
-                                        <input
-                                            type="file"
-                                            name="iconfiture6"
-                                            className="form-control-file"
-                                            value={iconfitureEdit6}
-                                            onChange={e => setIconFitureEdit6(e.target.value)}
-                                        />
-                                    </div>
+
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -10,7 +10,7 @@ import { MDBDataTable } from 'mdbreact';
 const AppsMenu = () => {
     const [tableApps, setTableApps] = useState('')
     const [idApps, setIdApps] = useState('')
-    const [loading, setLoading] = useState('')
+    const [loading, setLoading] = useState(false)
 
     // this for add
     const [icon, setIcon] = useState('')
@@ -269,7 +269,6 @@ const AppsMenu = () => {
             setTitleFiture4(result.data.titlefiture4)
             setTitleFiture5(result.data.titlefiture5)
             setTitleFiture6(result.data.titlefiture6)
-            console.log(icon)
         } catch (error) {
             console.log(error)
         }

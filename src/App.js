@@ -18,6 +18,7 @@ import ContactMenu from './Screens/ContactMenu';
 import AppsMenu from './Screens/AppsMenu';
 import RadioMenu from './Screens/RadioMenu';
 import UserMenu from './Screens/UserMenu';
+import DigitalAds from './Screens/DigitalAds';
 import '@sweetalert2/theme-dark';
 
 function App() {
@@ -106,6 +107,14 @@ function App() {
                     <span className="menu-title">User Menu</span>
                   </a>
                 </li>
+                <li className="nav-item menu-items">
+                  <a className="nav-link" href="adsmenu">
+                    <span className="menu-icon">
+                      <i className="mdi mdi-calendar-text" />
+                    </span>
+                    <span className="menu-title">Ads Menu</span>
+                  </a>
+                </li>
                 <li className="nav-item nav-category">
                   <span className="nav-link">Job Vacancy</span>
                 </li>
@@ -179,6 +188,11 @@ function App() {
                   {/* User Menu */}
                   <Route path="/usermenu">
                     <UserMenu />
+                  </Route>
+
+                  {/* Ads Menu */}
+                  <Route path="/adsmenu">
+                    <DigitalAds />
                   </Route>
 
                 </div>
